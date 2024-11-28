@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.vettrack.presentation.visits.register.RegisterVisitViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <!--TOOLBAR-->
+                <com.google.android.material.appbar.AppBarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/Theme.AppTheme.AppBarOverlay">
+
+                    <com.google.android.material.appbar.MaterialToolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:background="@color/md_theme_primary"
+                        android:paddingStart="0dp"
+                        android:paddingEnd="?android:attr/actionBarSize"
+                        app:navigationIcon="@drawable/ic_back"
+                        app:navigationIconTint="@color/md_theme_onPrimary"
+                        app:popupTheme="@style/Theme.VetTrack.PopupOverlay"
+                        app:title="@string/app_name"
+                        app:titleCentered="true"
+                        app:titleTextColor="@color/md_theme_onPrimary" />
+
+                </com.google.android.material.appbar.AppBarLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <!--TITLE REGISTER-->
+                    <TextView
+                        style="@style/TextAppearance.Material3.HeadlineSmall"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/txt_register_visit" />
+
+                    <!--DATE-->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tilDate"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        app:startIconDrawable="@drawable/ic_calendar">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:enabled="false"
+                            android:focusable="true"
+                            android:hint="@string/txt_date"
+                            android:text="@{viewModel.date}"
+                            android:textColor="@android:color/black"
+                            android:textColorHint="@android:color/black"
+                            tools:paddingStart="45dp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!--REASON-->
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        app:endIconMode="clear_text">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/txt_reason"
+                            android:inputType="text|textCapSentences"
+                            android:maxLines="1"
+                            android:minHeight="48dp"
+                            android:text="@={viewModel.reason}"
+                            android:textColorHint="@android:color/black" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!--CLINIC NAME-->
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        app:endIconMode="clear_text">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/txt_clinic_name"
+                            android:inputType="text|textCapWords"
+                            android:maxLines="1"
+                            android:minHeight="48dp"
+                            android:text="@={viewModel.clinicName}"
+                            android:textColorHint="@android:color/black" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!--CITY-->
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        app:endIconMode="clear_text">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/txt_city"
+                            android:inputType="text|textCapWords"
+                            android:maxLines="1"
+                            android:minHeight="48dp"
+                            android:text="@={viewModel.city}"
+                            android:textColorHint="@android:color/black" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!--TOTAL PAID-->
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        app:startIconDrawable="@drawable/ic_money">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/txt_total_paid"
+                            android:inputType="number|numberDecimal"
+                            android:maxLines="1"
+                            android:minHeight="48dp"
+                            android:text="@={viewModel.totalPaid}"
+                            android:textColorHint="@android:color/black"
+                            tools:paddingStart="45dp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!--PET NAME-->
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        app:endIconMode="clear_text">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/txt_pet_name"
+                            android:inputType="text|textCapSentences"
+                            android:maxLines="1"
+                            android:minHeight="48dp"
+                            android:text="@={viewModel.petName}"
+                            android:textColorHint="@android:color/black" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!--PET WEIGHT-->
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        app:endIconMode="clear_text"
+                        app:startIconDrawable="@drawable/ic_kg">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/txt_pet_weight"
+                            android:inputType="numberDecimal"
+                            android:maxLines="1"
+                            android:minHeight="48dp"
+                            android:text="@={viewModel.petWeight}"
+                            android:textColorHint="@android:color/black"
+                            tools:paddingStart="45dp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!--OBSERVATIONS-->
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        app:endIconMode="clear_text">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="start|top"
+                            android:hint="@string/txt_observations"
+                            android:inputType="textMultiLine|textCapSentences"
+                            android:maxLines="5"
+                            android:minHeight="148dp"
+                            android:overScrollMode="always"
+                            android:scrollbars="vertical"
+                            android:text="@={viewModel.observations}"
+                            android:textAlignment="viewStart"
+                            android:textColorHint="@android:color/black" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!--REGISTER BUTTON-->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnRegister"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="25dp"
+                        android:layout_marginBottom="25dp"
+                        android:background="@drawable/button_background"
+                        android:elevation="12dp"
+                        android:enabled="@{viewModel.buttonEnabled}"
+                        android:minHeight="48dp"
+                        android:onClick="@{()->viewModel.applyAction()}"
+                        android:text="@{viewModel.buttonText}"
+                        tools:text="@string/txt_register" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <include
+            layout="@layout/loading_layout"
+            app:loading="@{viewModel.loading}"
+            tools:visibility="gone" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

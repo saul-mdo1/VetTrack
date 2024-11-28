@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_visits">
+
+    <fragment
+        android:id="@+id/nav_visits"
+        android:name="com.example.vettrack.presentation.visits.list.VisitsFragment"
+        android:label="@string/txt_menu_vet_visits"
+        tools:layout="@layout/visits_fragment_layout" />
+
+    <fragment
+        android:id="@+id/nav_schedule_visit"
+        android:name="com.example.vettrack.presentation.scheduleVisits.register.ScheduleVisitFragment"
+        android:label="@string/txt_schedule_visit"
+        tools:layout="@layout/schedule_visit_fragment_layout" />
+
+    <fragment
+        android:id="@+id/nav_pets"
+        android:name="com.example.vettrack.presentation.pets.list.PetsFragment"
+        android:label="@string/txt_menu_pets"
+        tools:layout="@layout/pets_fragment_layout" />
+</navigation>

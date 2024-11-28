@@ -1,0 +1,70 @@
+<resources>
+    <string name="app_name">VetTrack</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="txt_menu_vet_visits">Vet visits</string>
+    <string name="txt_menu_pets">My pets</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="txt_sign_in">Sign In</string>
+    <string name="txt_logout">Logout</string>
+    <string name="txt_register">Register</string>
+    <string name="txt_cancel">Cancel</string>
+    <string name="txt_password">Password</string>
+    <string name="txt_email">Email</string>
+
+    <string name="txt_loading">Loading</string>
+    <string name="txt_sign_up"><u>Sign up here</u></string>
+    <string name="txt_create_user">Create user</string>
+    <string name="txt_error">Something went wrong, try later</string>
+    <string name="txt_success_register">The visit was registered successfully</string>
+    <string name="txt_success_schedule">The visit wa scheduled on %1$s successfully, you\'ll receive a notification reminding you the visit</string>
+    <string name="txt_success_update">The visit was updated successfully</string>
+    <string name="txt_success_signup">User created successfully</string>
+    <string name="txt_register_visit">Register visit</string>
+    <string name="txt_schedule_visit">Schedule visit</string>
+    <string name="txt_reason_mandatory">Reason*</string>
+    <string name="txt_reason">Reason</string>
+    <string name="txt_pet_weight_mandatory">Pet Weight*</string>
+    <string name="txt_pet_weight">Pet Weight</string>
+    <string name="txt_pet_name_mandatory">Pet Name*</string>
+    <string name="txt_pet_name">Pet Name</string>
+    <string name="txt_clinic_name_mandatory">Clinic Name*</string>
+    <string name="txt_clinic_name">Clinic Name</string>
+    <string name="txt_city">City</string>
+    <string name="txt_total_paid_mandatory">Total paid*</string>
+    <string name="txt_total_paid">Total paid</string>
+    <string name="txt_observations">Observations</string>
+    <string name="txt_date_mandatory">Date*</string>
+    <string name="txt_date">Date</string>
+    <string name="txt_accept">Accept</string>
+    <string name="txt_success">Success</string>
+    <string name="txt_error_title">Error</string>
+    <string name="txt_error_register_visit">The visit couldn\'t be registered, please try later</string>
+    <string name="txt_error_update_visit">The visit couldn\'t be updated, please try later</string>
+    <string name="txt_error_schedule_visit">The visit couldn\'t be scheduled, please try later</string>
+    <string name="txt_logout_message">Are you sure you want to sign out?</string>
+
+    <string name="txt_clinic_placeholder">Clinic: %1$s</string>
+    <string name="txt_date_placeholder">Date: %1$s</string>
+    <string name="txt_pet_name_placeholder">Pet: %1$s</string>
+    <string name="txt_reason_placeholder">Reason: %1$s</string>
+    <string name="txt_visits_num_placeholder">%1$s visits</string>
+    <string name="txt_weight_placeholder">%1$s kg</string>
+
+    <string name="txt_visit_details">Visit Details</string>
+    <string name="txt_update">Update</string>
+    <string name="txt_message_delete_visit">Are you sure you want to delete the visit dated %1$s?</string>
+    <string name="txt_visit_deleted">Visit deleted successfully</string>
+    <string name="txt_title_delete_visit_dialog">Delete visit</string>
+    <string name="txt_notification_message">%1$s and you have a visit scheduled at the clinic %3$s.</string>
+    <string name="txt_notification_title">Remember!</string>
+    <string name="txt_notification_message_default">You have a scheduled vet visit today.</string>
+    <string name="txt_message_ask_notification_permission">You need to grant the notifications permission so we can let you know when the date is close</string>
+    <string name="txt_go_to_settings">GO TO SETTINGS</string>
+    <string name="txt_notification_permission">Notifications Permission</string>
+</resources>

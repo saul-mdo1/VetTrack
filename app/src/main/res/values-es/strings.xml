@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VetTrack</string>
+    <string name="navigation_drawer_open">Abrir navigación</string>
+    <string name="navigation_drawer_close">Cerrar navegación</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Configuración</string>
+
+    <string name="txt_menu_vet_visits">Visitas</string>
+    <string name="txt_menu_pets">Mis mascotas</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+    <string name="txt_sign_in">Iniciar Sesión</string>
+    <string name="txt_logout">Cerrar Sesión</string>
+    <string name="txt_register">Registrar</string>
+    <string name="txt_cancel">Cancelar</string>
+    <string name="txt_password">Contraseña</string>
+    <string name="txt_email">Correo electrónico</string>
+
+    <string name="txt_loading">Cargando</string>
+    <string name="txt_sign_up"><u>Registrate aquí</u></string>
+    <string name="txt_create_user">Crear usuario</string>
+    <string name="txt_error">Algo salió mal, intente de nuevo</string>
+    <string name="txt_success_register">La visita fue registrada con éxito</string>
+    <string name="txt_success_schedule">Se agendó la visita el día %1$s con éxito, se le notificará para recordar la visita</string>
+    <string name="txt_success_update">La visita fue actualizada con éxito</string>
+    <string name="txt_success_signup">Usuario creado con éxito</string>
+    <string name="txt_register_visit">Registrar visita</string>
+    <string name="txt_schedule_visit">Agendar visita</string>
+    <string name="txt_reason_mandatory">Motivo*</string>
+    <string name="txt_reason">Motivo</string>
+    <string name="txt_pet_weight_mandatory">Peso de mascota*</string>
+    <string name="txt_pet_weight">Peso de mascota</string>
+    <string name="txt_pet_name_mandatory">Nombre de mascota*</string>
+    <string name="txt_pet_name">Mascota</string>
+    <string name="txt_clinic_name_mandatory">Nombre de clinica*</string>
+    <string name="txt_clinic_name">Clinica</string>
+    <string name="txt_city">Ciudad</string>
+    <string name="txt_total_paid_mandatory">Total pagado*</string>
+    <string name="txt_total_paid">Total pagado</string>
+    <string name="txt_observations">Observaciones</string>
+    <string name="txt_date_mandatory">Fecha*</string>
+    <string name="txt_date">Fecha</string>
+    <string name="txt_accept">Aceptar</string>
+    <string name="txt_success">Éxito</string>
+    <string name="txt_error_title">Error</string>
+    <string name="txt_error_register_visit">La visita no fue registrada, por favor intente mas tarde</string>
+    <string name="txt_error_update_visit">La visita no fue actualizada, por favor intente mas tarde</string>
+    <string name="txt_error_schedule_visit">La visita no fue agendada, por favor intente mas tarde</string>
+    <string name="txt_logout_message">¿Seguro que desea cerrar sesión?</string>
+
+    <string name="txt_clinic_placeholder">Clinica: %1$s</string>
+    <string name="txt_date_placeholder">Fecha: %1$s</string>
+    <string name="txt_pet_name_placeholder">Mascota: %1$s</string>
+    <string name="txt_reason_placeholder">Motivo: %1$s</string>
+    <string name="txt_visits_num_placeholder">%1$s visitas</string>
+    <string name="txt_weight_placeholder">%1$s kg</string>
+
+    <string name="txt_visit_details">Detalles de la visita</string>
+    <string name="txt_update">Actualizar</string>
+    <string name="txt_message_delete_visit">¿Desea eliminar la visita con fecha el %1$s?</string>
+    <string name="txt_visit_deleted">Visita eliminada con éxito</string>
+    <string name="txt_title_delete_visit_dialog">Eliminar visita</string>
+    <string name="txt_notification_message">%1$s y tu tienen una visita en la clincia %3$s.</string>
+    <string name="txt_notification_title">¡Recuerda!</string>
+    <string name="txt_notification_message_default">Tienes una visita agendada para hoy.</string>
+    <string name="txt_message_ask_notification_permission">Necesitas permitir acceso a las notificaciones para avisarte cuando la fecha se acerque.</string>
+    <string name="txt_go_to_settings">Ir a Ajustes</string>
+    <string name="txt_notification_permission">Permiso de notificaciones</string>
+</resources>
