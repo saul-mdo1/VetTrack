@@ -27,6 +27,7 @@
     <string name="txt_success_signup">User created successfully</string>
     <string name="txt_register_visit">Register visit</string>
     <string name="txt_schedule_visit">Schedule visit</string>
+    <string name="txt_scheduled_visit">Scheduled visits</string>
     <string name="txt_reason_mandatory">Reason*</string>
     <string name="txt_reason">Reason</string>
     <string name="txt_pet_weight_mandatory">Pet Weight*</string>
@@ -67,4 +68,6 @@
     <string name="txt_message_ask_notification_permission">You need to grant the notifications permission so we can let you know when the date is close</string>
     <string name="txt_go_to_settings">GO TO SETTINGS</string>
     <string name="txt_notification_permission">Notifications Permission</string>
+    <string name="txt_past_visits">Past</string>
+    <string name="txt_future_visits">Future</string>
 </resources>

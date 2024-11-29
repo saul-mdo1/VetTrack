@@ -29,6 +29,7 @@
     <string name="txt_success_signup">Usuario creado con éxito</string>
     <string name="txt_register_visit">Registrar visita</string>
     <string name="txt_schedule_visit">Agendar visita</string>
+    <string name="txt_scheduled_visit">Visitas futuras</string>
     <string name="txt_reason_mandatory">Motivo*</string>
     <string name="txt_reason">Motivo</string>
     <string name="txt_pet_weight_mandatory">Peso de mascota*</string>
@@ -69,4 +70,6 @@
     <string name="txt_message_ask_notification_permission">Necesitas permitir acceso a las notificaciones para avisarte cuando la fecha se acerque.</string>
     <string name="txt_go_to_settings">Ir a Ajustes</string>
     <string name="txt_notification_permission">Permiso de notificaciones</string>
+    <string name="txt_past_visits">Pasadas</string>
+    <string name="txt_future_visits">Futuras</string>
 </resources>

@@ -29,3 +29,17 @@ replay_pid*
 file-system.probe
 
 /build/
+
+# Ignorar archivos de construcción de Gradle
+*.bin
+
+# Ignorar carpetas y archivos de salida
+*/build/
+
+# Ignorar configuraciones de Android Studio
+.idea/
+*.iml
+
+# Ignorar archivos del sistema
+.DS_Store
+Thumbs.db

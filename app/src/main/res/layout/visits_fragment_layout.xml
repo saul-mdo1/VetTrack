@@ -13,6 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/md_theme_background"
         tools:context=".presentation.visits.list.VisitsFragment">
 
         <LinearLayout
@@ -31,6 +32,7 @@
 
                 <androidx.appcompat.widget.SearchView
                     android:id="@+id/svBook"
+                    android:background="@color/md_theme_surface"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:elevation="8dp"
@@ -44,22 +46,26 @@
                 android:layout_marginBottom="8dp"
                 android:orientation="horizontal">
 
-                <TextView
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/swLists"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAlignment="viewStart"
-                    android:layout_weight="0.5"
-                    android:text="@{@string/txt_visits_num_placeholder(viewModel.visitsNum)}"
-                    tools:text="23 visitas" />
+                    android:textOff="@string/txt_past_visits"
+                    android:textOn="@string/txt_future_visits"
+                    android:thumb="@drawable/switch_thumb"
+                    app:track="@drawable/switch_track"
+                    app:showText="true"
+                    app:thumbTint="@null"
+                    app:trackTint="@null"
+                    app:trackDecoration="@null"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@{@string/txt_visits_num_placeholder(viewModel.visitsNum)}"
                     android:textAlignment="viewEnd"
-                    android:layout_weight="0.5"
-                    android:text="@{@string/txt_visits_num_placeholder(viewModel.visitsNum)}"
+                    android:textSize="16sp"
                     tools:text="23 visitas" />
-
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
