@@ -70,4 +70,5 @@
     <string name="txt_notification_permission">Notifications Permission</string>
     <string name="txt_past_visits">Past</string>
     <string name="txt_future_visits">Future</string>
+    <string name="txt_no_visits_registered">No visits registered</string>
 </resources>

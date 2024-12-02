@@ -32,9 +32,9 @@
 
                 <androidx.appcompat.widget.SearchView
                     android:id="@+id/svBook"
-                    android:background="@color/md_theme_surface"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/md_theme_surface"
                     android:elevation="8dp"
                     android:minHeight="48dp"
                     android:textSize="20sp" />
@@ -50,14 +50,15 @@
                     android:id="@+id/swLists"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:checked="@={viewModel.futureEnabled}"
                     android:textOff="@string/txt_past_visits"
                     android:textOn="@string/txt_future_visits"
                     android:thumb="@drawable/switch_thumb"
-                    app:track="@drawable/switch_track"
                     app:showText="true"
                     app:thumbTint="@null"
-                    app:trackTint="@null"
-                    app:trackDecoration="@null"/>
+                    app:track="@drawable/switch_track"
+                    app:trackDecoration="@null"
+                    app:trackTint="@null" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -68,11 +69,29 @@
                     tools:text="23 visitas" />
             </LinearLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvVisits"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:listitem="@layout/visit_item_layout" />
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/txt_no_visits_registered"
+                    android:textColor="@android:color/black"
+                    android:visibility="@{viewModel.emptyListVisible}"
+                    android:textStyle="italic"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvVisits"
+                    tools:listitem="@layout/visit_item_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </LinearLayout>
 
         <include

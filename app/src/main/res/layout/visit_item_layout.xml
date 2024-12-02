@@ -67,6 +67,7 @@
                 android:layout_marginTop="8dp"
                 android:ellipsize="end"
                 android:maxLines="1"
+                android:visibility="@{!viewModel.isFuture}"
                 android:text="@{@string/txt_reason_placeholder(viewModel.reason)}"
                 android:textColor="@color/md_theme_onSecondary"
                 android:textSize="16sp"
@@ -81,6 +82,7 @@
 
                 <ImageView
                     android:id="@+id/ivDetails"
+                    android:visibility="@{!viewModel.isFuture}"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:layout_marginEnd="8dp"
@@ -90,6 +92,7 @@
 
                 <ImageView
                     android:id="@+id/ivUpdate"
+                    android:visibility="@{!viewModel.isFuture}"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:layout_marginEnd="8dp"

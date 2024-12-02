@@ -10,5 +10,6 @@ data class VisitModel(
     val city: String? = "",
     val totalPaid: String = "",
     val observations: String? = "",
-    val userId: String = ""
+    val userId: String = "",
+    val pending: Boolean = false
 )

@@ -1,6 +1,7 @@
 package com.example.vettrack.presentation.visits.list
 
 import com.example.vettrack.models.VisitModel
+import com.example.vettrack.presentation.utils.isVisitPending
 
 class VisitItemViewModel {
     var visit: VisitModel? = null
@@ -19,4 +20,7 @@ class VisitItemViewModel {
 
     val reason: String
         get() = visit?.reason ?: "---"
+
+    val isFuture: Boolean
+        get() = isVisitPending(visit?.date)
 }
