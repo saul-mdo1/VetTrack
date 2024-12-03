@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.vettrack.presentation.visits.register.CompleteVisitViewModel" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="12dp"
+        android:backgroundTint="@color/md_theme_primary"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="16dp"
+                android:text="@string/txt_complete_visit"
+                android:textAllCaps="true"
+                android:textColor="@color/md_theme_onPrimary"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:boxBackgroundColor="@color/md_theme_onPrimary"
+                app:boxStrokeColor="@color/md_theme_onPrimary"
+                app:endIconMode="clear_text"
+                app:startIconDrawable="@drawable/ic_reason">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tvReason"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/txt_reason"
+                    android:inputType="text|textCapSentences"
+                    android:maxLines="1"
+                    android:minHeight="48dp"
+                    android:text="@={viewModel.reason}"
+                    android:textColor="@android:color/black"
+                    tools:paddingStart="45dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:boxBackgroundColor="@color/md_theme_onPrimary"
+                app:boxStrokeColor="@color/md_theme_onPrimary"
+                app:endIconMode="clear_text"
+                app:startIconDrawable="@drawable/ic_city">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tvCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/txt_city"
+                    android:inputType="text|textCapSentences"
+                    android:maxLines="1"
+                    android:minHeight="48dp"
+                    android:text="@={viewModel.city}"
+                    android:textColor="@android:color/black"
+                    tools:paddingStart="45dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:boxBackgroundColor="@color/md_theme_onPrimary"
+                app:boxStrokeColor="@color/md_theme_onPrimary"
+                app:endIconMode="clear_text"
+                app:startIconDrawable="@drawable/ic_money">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tvTotalPaid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/txt_total_paid"
+                    android:inputType="text|textCapSentences"
+                    android:maxLines="1"
+                    android:minHeight="48dp"
+                    android:text="@={viewModel.totalPaid}"
+                    android:textColor="@android:color/black"
+                    tools:paddingStart="45dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:boxBackgroundColor="@color/md_theme_onPrimary"
+                app:boxStrokeColor="@color/md_theme_onPrimary"
+                app:endIconMode="clear_text"
+                app:startIconDrawable="@drawable/ic_kg">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tvPetWeight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/txt_pet_weight"
+                    android:inputType="text|textCapSentences"
+                    android:maxLines="1"
+                    android:minHeight="48dp"
+                    android:text="@={viewModel.petWeight}"
+                    android:textColor="@android:color/black"
+                    tools:paddingStart="45dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:boxBackgroundColor="@color/md_theme_onPrimary"
+                app:boxStrokeColor="@color/md_theme_onPrimary"
+                app:endIconMode="clear_text">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start|top"
+                    android:hint="@string/txt_observations"
+                    android:inputType="textMultiLine|textCapSentences"
+                    android:maxLines="5"
+                    android:minHeight="148dp"
+                    android:overScrollMode="always"
+                    android:scrollbars="vertical"
+                    android:text="@={viewModel.observations}"
+                    android:textAlignment="viewStart" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btnSaveVisit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/md_theme_onPrimary"
+                android:enabled="@{viewModel.buttonEnabled}"
+                android:minHeight="48dp"
+                android:text="@string/txt_accept"
+                android:textColor="@color/md_theme_primary" />
+
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/md_theme_secondary"
+                android:minHeight="48dp"
+                android:text="@string/txt_cancel"
+                android:textColor="@color/md_theme_onSecondary" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

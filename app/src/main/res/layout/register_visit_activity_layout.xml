@@ -87,7 +87,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        app:endIconMode="clear_text">
+                        app:endIconMode="clear_text"
+                        app:startIconDrawable="@drawable/ic_reason">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
@@ -97,7 +98,8 @@
                             android:maxLines="1"
                             android:minHeight="48dp"
                             android:text="@={viewModel.reason}"
-                            android:textColorHint="@android:color/black" />
+                            android:textColorHint="@android:color/black"
+                            tools:paddingStart="45dp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <!--CLINIC NAME-->
@@ -106,7 +108,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        app:endIconMode="clear_text">
+                        app:endIconMode="clear_text"
+                        app:startIconDrawable="@drawable/ic_clinic">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
@@ -116,7 +119,8 @@
                             android:maxLines="1"
                             android:minHeight="48dp"
                             android:text="@={viewModel.clinicName}"
-                            android:textColorHint="@android:color/black" />
+                            android:textColorHint="@android:color/black"
+                            tools:paddingStart="45dp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <!--CITY-->
@@ -125,6 +129,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
+                        app:startIconDrawable="@drawable/ic_city"
                         app:endIconMode="clear_text">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -133,6 +138,7 @@
                             android:hint="@string/txt_city"
                             android:inputType="text|textCapWords"
                             android:maxLines="1"
+                            tools:paddingStart="45dp"
                             android:minHeight="48dp"
                             android:text="@={viewModel.city}"
                             android:textColorHint="@android:color/black" />
@@ -165,6 +171,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
+                        app:startIconDrawable="@drawable/ic_pet"
                         app:endIconMode="clear_text">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -173,6 +180,7 @@
                             android:hint="@string/txt_pet_name"
                             android:inputType="text|textCapSentences"
                             android:maxLines="1"
+                            tools:paddingStart="45dp"
                             android:minHeight="48dp"
                             android:text="@={viewModel.petName}"
                             android:textColorHint="@android:color/black" />

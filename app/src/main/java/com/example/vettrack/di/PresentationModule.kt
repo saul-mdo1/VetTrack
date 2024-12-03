@@ -8,6 +8,7 @@ import com.example.vettrack.presentation.scheduleVisits.register.ScheduleVisitVi
 import com.example.vettrack.presentation.splash.SplashViewModel
 import com.example.vettrack.presentation.visits.details.VisitDetailsViewModel
 import com.example.vettrack.presentation.visits.list.VisitsViewModel
+import com.example.vettrack.presentation.visits.register.CompleteVisitViewModel
 import com.example.vettrack.presentation.visits.register.RegisterVisitViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -22,6 +23,7 @@ val viewModelsModule = module {
     viewModel { VisitDetailsViewModel(get()) }
     viewModel { ScheduleVisitViewModel(get()) }
     viewModel { PetsViewModel(get()) }
+    viewModel { CompleteVisitViewModel(get()) }
 }
 
 val presentationModule = listOf(

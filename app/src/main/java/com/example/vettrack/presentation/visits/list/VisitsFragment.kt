@@ -16,8 +16,10 @@ import com.example.vettrack.R
 import com.example.vettrack.core.Session
 import com.example.vettrack.databinding.VisitsFragmentLayoutBinding
 import com.example.vettrack.models.VisitModel
+import com.example.vettrack.presentation.utils.COMPLETE_VISIT_FRAGMENT_TAG
 import com.example.vettrack.presentation.utils.VISIT_ID_TAG
 import com.example.vettrack.presentation.visits.details.VisitDetailsActivity
+import com.example.vettrack.presentation.visits.register.CompleteVisitDialogFragment
 import com.example.vettrack.presentation.visits.register.RegisterVisitActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -73,11 +75,10 @@ class VisitsFragment : Fragment() {
                 showConfirmDelete(visitItem)
             },
             completeVisitClicked = { visitItem ->
-                Toast.makeText(
-                    requireActivity(),
-                    "OPEN DIALOG TO COMPLETE THE VISIT DATA OF THE DATE ${visitItem.date}",
-                    Toast.LENGTH_SHORT
-                ).show()
+                visitItem.visit?.let { visit ->
+                    val df = CompleteVisitDialogFragment.newInstance(visit)
+                    df.show(childFragmentManager, COMPLETE_VISIT_FRAGMENT_TAG)
+                }
             }
         )
 

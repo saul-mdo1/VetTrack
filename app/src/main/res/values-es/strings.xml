@@ -73,4 +73,5 @@
     <string name="txt_past_visits">Pasadas</string>
     <string name="txt_future_visits">Futuras</string>
     <string name="txt_no_visits_registered">No hay visitas registradas</string>
+    <string name="txt_complete_visit">Completar la visita</string>
 </resources>

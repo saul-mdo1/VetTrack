@@ -39,6 +39,7 @@ file-system.probe
 
 # Ignorar configuraciones de Android Studio
 .idea/
+*/idea/
 *.iml
 
 # Ignorar archivos del sistema
