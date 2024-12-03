@@ -3,7 +3,6 @@ package com.example.vettrack.presentation.visits.register
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.vettrack.presentation.utils.isVisitPending
 import com.example.vettrack.repository.VisitsRepository
 import timber.log.Timber
 
