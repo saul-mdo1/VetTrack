@@ -99,7 +99,7 @@ fun List<VisitModel>.sortByDate(): List<VisitModel> {
     return try {
         val formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy h:mm a", Locale.getDefault())
 
-        this.sortedByDescending { dateTimeString ->
+        this.sortedBy { dateTimeString ->
             LocalDateTime.parse(dateTimeString.date, formatter)
         }
     } catch (e: Exception) {

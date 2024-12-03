@@ -18,12 +18,12 @@ class VisitsViewModel(private val visitsRepository: VisitsRepository) : ViewMode
 
     private val futureList: LiveData<List<VisitModel>>
         get() = _visitsList.map { visits ->
-            visits.filter { isVisitPending(it.date) }
+            visits.filter { it.pending }
         }
 
     private val pastList: LiveData<List<VisitModel>>
         get() = _visitsList.map { visits ->
-            visits.filter { !isVisitPending(it.date) }
+            visits.filter { !it.pending }
         }
 
     val loading = MutableLiveData(true)
@@ -52,25 +52,36 @@ class VisitsViewModel(private val visitsRepository: VisitsRepository) : ViewMode
         visitsRepository.getVisits(
             uid,
             onSuccess = { visits ->
-                _visitsList.postValue(visits.sortByDate())
+                Timber.d("VisitsViewModel_TAG: getVisits: SUCCESS: items ${visits.size}")
+                validatePendingStatus(visits.sortByDate())
                 futureEnabled.postValue(false)
             },
             onFailure = {
+                Timber.d("VisitsViewModel_TAG: getVisits: ERROR ")
                 _visitsList.postValue(emptyList())
                 visitsNum.postValue("0")
             }
         )
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun validatePendingStatus(listResponse: List<VisitModel>) {
+        Timber.d("VisitsViewModel_TAG: validatePendingStatus: ")
+        val list = listResponse.map { visit ->
+            if (visit.pending && !isVisitPending(visit.date))
+                visit.copy(pending = false)
+            else
+                visit
+        }
+
+        _visitsList.postValue(list)
+    }
+
     private fun filterVisitsByStatus(future: Boolean) {
         Timber.d("VisitsViewModel_TAG: filterVisitsByStatus: ")
-        if (future) {
-            visitsList.postValue(futureList.value)
-            visitsNum.postValue(futureList.value?.size.toString())
-        } else {
-            visitsList.postValue(pastList.value)
-            visitsNum.postValue(pastList.value?.size.toString())
-        }
+        val list = if(future) futureList.value else pastList.value
+        visitsList.postValue(list)
+        visitsNum.postValue(list?.size.toString())
     }
 
     fun filterList(query: String): List<VisitModel>? {

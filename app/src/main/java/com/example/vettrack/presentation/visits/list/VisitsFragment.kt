@@ -71,6 +71,13 @@ class VisitsFragment : Fragment() {
             },
             deleteClicked = { visitItem ->
                 showConfirmDelete(visitItem)
+            },
+            completeVisitClicked = { visitItem ->
+                Toast.makeText(
+                    requireActivity(),
+                    "OPEN DIALOG TO COMPLETE THE VISIT DATA OF THE DATE ${visitItem.date}",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         )
 

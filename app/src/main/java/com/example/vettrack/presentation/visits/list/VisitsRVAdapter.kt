@@ -10,13 +10,17 @@ import timber.log.Timber
 class VisitsRVAdapter(
     private val detailsClicked: (VisitItemViewModel) -> Unit,
     private val updateClicked: (VisitItemViewModel) -> Unit,
-    private val deleteClicked: (VisitItemViewModel) -> Unit
+    private val deleteClicked: (VisitItemViewModel) -> Unit,
+    private val completeVisitClicked: (VisitItemViewModel) -> Unit
 ) :
     BaseRVAdapter<VisitItemViewModel, VisitItemLayoutBinding, VisitsRVAdapter.ItemViewHolder>() {
 
     inner class ItemViewHolder(val itemBinding: VisitItemLayoutBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(item: VisitItemViewModel) {
+            itemBinding.ivCompleteVisit.setOnClickListener {
+                completeVisitClicked(item)
+            }
             itemBinding.ivDetails.setOnClickListener {
                 detailsClicked(item)
             }
