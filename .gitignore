@@ -33,6 +33,7 @@ file-system.probe
 # Ignorar archivos de construcción de Gradle
 *.bin
 .gradle/
+.gradle
 
 # Ignorar carpetas y archivos de salida
 */build/

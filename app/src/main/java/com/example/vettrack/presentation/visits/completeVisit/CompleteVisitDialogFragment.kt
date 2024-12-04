@@ -1,4 +1,4 @@
-package com.example.vettrack.presentation.visits.register
+package com.example.vettrack.presentation.visits.completeVisit
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -6,12 +6,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.example.vettrack.core.Session
 import com.example.vettrack.databinding.CompleteVisitDialogLayoutBinding
 import com.example.vettrack.models.VisitModel
 import com.example.vettrack.presentation.utils.VISIT_MODEL_TAG
+import com.example.vettrack.presentation.visits.details.CompleteVisitListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
@@ -19,6 +19,8 @@ class CompleteVisitDialogFragment : DialogFragment() {
 
     private lateinit var layout: CompleteVisitDialogLayoutBinding
     private val viewModel: CompleteVisitViewModel by viewModel()
+    var listener: CompleteVisitListener? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -61,6 +63,7 @@ class CompleteVisitDialogFragment : DialogFragment() {
         viewModel.successOperation.observe(requireActivity()) { success ->
             if (success) {
                 dismiss()
+                listener?.visitCompleted(viewModel.documentId)
             }
         }
     }

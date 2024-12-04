@@ -1,4 +1,4 @@
-package com.example.vettrack.presentation.visits.register
+package com.example.vettrack.presentation.visits.completeVisit
 
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,7 +9,7 @@ import timber.log.Timber
 
 class CompleteVisitViewModel(private val visitsRepository: VisitsRepository) : ViewModel() {
     val successOperation = MutableLiveData<Boolean>()
-    private var documentId = ""
+    var documentId = ""
 
     //region DATA
     val date = MutableLiveData("")

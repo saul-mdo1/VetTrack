@@ -19,13 +19,14 @@ import com.example.vettrack.models.VisitModel
 import com.example.vettrack.presentation.utils.COMPLETE_VISIT_FRAGMENT_TAG
 import com.example.vettrack.presentation.utils.VISIT_ID_TAG
 import com.example.vettrack.presentation.visits.details.VisitDetailsActivity
-import com.example.vettrack.presentation.visits.register.CompleteVisitDialogFragment
+import com.example.vettrack.presentation.visits.completeVisit.CompleteVisitDialogFragment
+import com.example.vettrack.presentation.visits.details.CompleteVisitListener
 import com.example.vettrack.presentation.visits.register.RegisterVisitActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
-class VisitsFragment : Fragment() {
+class VisitsFragment : Fragment(), CompleteVisitListener {
 
     private lateinit var layout: VisitsFragmentLayoutBinding
     private val viewModel: VisitsViewModel by viewModel()
@@ -77,6 +78,7 @@ class VisitsFragment : Fragment() {
             completeVisitClicked = { visitItem ->
                 visitItem.visit?.let { visit ->
                     val df = CompleteVisitDialogFragment.newInstance(visit)
+                    df.listener = this
                     df.show(childFragmentManager, COMPLETE_VISIT_FRAGMENT_TAG)
                 }
             }
@@ -162,5 +164,10 @@ class VisitsFragment : Fragment() {
             }
         }
         visitsRVAdapter.itemsList = list
+    }
+
+    override fun visitCompleted(id: String) {
+        Timber.d("VisitsFragment_TAG: visitCompleted: ")
+        Toast.makeText(requireActivity(), "UPDATE LIST WITH ID: $id", Toast.LENGTH_SHORT).show()
     }
 }

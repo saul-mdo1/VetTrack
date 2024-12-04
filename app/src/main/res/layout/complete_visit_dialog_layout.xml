@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.vettrack.presentation.visits.register.CompleteVisitViewModel" />
+            type="com.example.vettrack.presentation.visits.completeVisit.CompleteVisitViewModel" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
