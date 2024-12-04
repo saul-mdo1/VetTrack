@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import com.example.vettrack.core.Session
 import com.example.vettrack.databinding.CompleteVisitDialogLayoutBinding
 import com.example.vettrack.models.VisitModel
 import com.example.vettrack.presentation.utils.VISIT_MODEL_TAG
@@ -29,8 +30,13 @@ class CompleteVisitDialogFragment : DialogFragment() {
         layout.viewModel = viewModel
 
         initViews()
-
         getVisit()
+
+        Session.user?.uid?.let {
+            viewModel.userId = it
+        }
+
+        initObservers()
 
         return layout.root
     }
@@ -45,10 +51,17 @@ class CompleteVisitDialogFragment : DialogFragment() {
     @Suppress("DEPRECATION")
     private fun getVisit() {
         Timber.d("CompleteVisitDialogFragment_TAG: getVisit: ")
-        val visit = arguments?.getParcelable<VisitModel>(VISIT_MODEL_TAG)
-        if (visit != null) {
-            Toast.makeText(requireActivity(), "VISIT WITH DATE: ${visit.date}", Toast.LENGTH_SHORT)
-                .show()
+        arguments?.getParcelable<VisitModel>(VISIT_MODEL_TAG)?.let { visit ->
+            viewModel.setVisitData(visit)
+        }
+    }
+
+    private fun initObservers() {
+        Timber.d("CompleteVisitDialogFragment_TAG: initObservers: ")
+        viewModel.successOperation.observe(requireActivity()) { success ->
+            if (success) {
+                dismiss()
+            }
         }
     }
 

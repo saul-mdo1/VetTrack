@@ -48,7 +48,7 @@
                     android:id="@+id/tvReason"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/txt_reason"
+                    android:hint="@string/txt_reason_mandatory"
                     android:inputType="text|textCapSentences"
                     android:maxLines="1"
                     android:minHeight="48dp"
@@ -94,8 +94,8 @@
                     android:id="@+id/tvTotalPaid"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/txt_total_paid"
-                    android:inputType="text|textCapSentences"
+                    android:hint="@string/txt_total_paid_mandatory"
+                    android:inputType="numberDecimal"
                     android:maxLines="1"
                     android:minHeight="48dp"
                     android:text="@={viewModel.totalPaid}"
@@ -117,8 +117,8 @@
                     android:id="@+id/tvPetWeight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/txt_pet_weight"
-                    android:inputType="text|textCapSentences"
+                    android:hint="@string/txt_pet_weight_mandatory"
+                    android:inputType="numberDecimal"
                     android:maxLines="1"
                     android:minHeight="48dp"
                     android:text="@={viewModel.petWeight}"
@@ -149,6 +149,16 @@
                     android:textAlignment="viewStart" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <TextView
+                android:text="@string/txt_fill_required_fields"
+                android:textColor="@color/md_theme_onPrimary"
+                android:textSize="16sp"
+                android:visibility="@{!viewModel.buttonEnabled}"
+                android:textAlignment="center"
+                android:layout_marginBottom="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
             <Button
                 android:id="@+id/btnSaveVisit"
                 android:layout_width="match_parent"
@@ -157,6 +167,7 @@
                 android:backgroundTint="@color/md_theme_onPrimary"
                 android:enabled="@{viewModel.buttonEnabled}"
                 android:minHeight="48dp"
+                android:onClick="@{()->viewModel.updateVisit()}"
                 android:text="@string/txt_accept"
                 android:textColor="@color/md_theme_primary" />
 

@@ -72,4 +72,5 @@
     <string name="txt_future_visits">Future</string>
     <string name="txt_no_visits_registered">No visits registered</string>
     <string name="txt_complete_visit">Complete visit</string>
+    <string name="txt_fill_required_fields">Fill the required fields</string>
 </resources>

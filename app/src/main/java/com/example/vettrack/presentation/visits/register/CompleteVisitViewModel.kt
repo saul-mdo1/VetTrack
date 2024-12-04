@@ -3,13 +3,13 @@ package com.example.vettrack.presentation.visits.register
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.vettrack.models.VisitModel
 import com.example.vettrack.repository.VisitsRepository
 import timber.log.Timber
 
 class CompleteVisitViewModel(private val visitsRepository: VisitsRepository) : ViewModel() {
-    val successOperation = MutableLiveData(false)
-    val errorOperation = MutableLiveData(false)
-    var documentId = ""
+    val successOperation = MutableLiveData<Boolean>()
+    private var documentId = ""
 
     //region DATA
     val date = MutableLiveData("")
@@ -25,26 +25,20 @@ class CompleteVisitViewModel(private val visitsRepository: VisitsRepository) : V
 
     //region Data Validators
     val buttonEnabled = MediatorLiveData<Boolean>().apply {
-        addSource(date) { validateForm() }
         addSource(reason) { validateForm() }
         addSource(petWeight) { validateForm() }
-        addSource(petName) { validateForm() }
-        addSource(clinicName) { validateForm() }
         addSource(totalPaid) { validateForm() }
     }
     //endregion
 
     private fun validateForm() {
         Timber.d("CompleteVisitViewModel_TAG: validateForm: ")
-        buttonEnabled.value = !date.value.isNullOrBlank()
-                && !reason.value.isNullOrBlank()
+        buttonEnabled.value = !reason.value.isNullOrBlank()
                 && !petWeight.value.isNullOrBlank()
-                && !petName.value.isNullOrBlank()
-                && !clinicName.value.isNullOrBlank()
                 && !totalPaid.value.isNullOrBlank()
     }
 
-    private fun updateVisit() {
+    fun updateVisit() {
         Timber.d("RegisterVisitViewModel_TAG: updateVisit: ")
         val visit = mapVisit()
         visitsRepository.updateVisit(
@@ -54,7 +48,7 @@ class CompleteVisitViewModel(private val visitsRepository: VisitsRepository) : V
                 successOperation.postValue(true)
             },
             onFailure = {
-                errorOperation.postValue(true)
+                successOperation.postValue(false)
             }
         )
     }
@@ -73,5 +67,13 @@ class CompleteVisitViewModel(private val visitsRepository: VisitsRepository) : V
             "pending" to false,
             "userId" to userId
         )
+    }
+
+    fun setVisitData(visit: VisitModel) {
+        Timber.d("CompleteVisitViewModel_TAG: setVisitData: ")
+        documentId = visit.id
+        date.postValue(visit.date)
+        petName.postValue(visit.petName)
+        clinicName.postValue(visit.clinicName)
     }
 }
