@@ -52,11 +52,16 @@ class VisitsFragment : Fragment(), CompleteVisitListener {
         initObservers()
         initSearchView()
 
+        getVisits()
+
+        return layout.root
+    }
+
+    private fun getVisits() {
+        Timber.d("VisitsFragment_TAG: getVisits: ")
         Session.user?.uid?.let {
             viewModel.getVisits(it)
         }
-
-        return layout.root
     }
 
     private fun initRecyclerView() {
@@ -125,9 +130,7 @@ class VisitsFragment : Fragment(), CompleteVisitListener {
                     requireActivity(),
                     getString(R.string.txt_visit_deleted), Toast.LENGTH_SHORT
                 ).show()
-                Session.user?.uid?.let {
-                    viewModel.getVisits(it)
-                }
+                getVisits()
             }
         }
     }
@@ -166,8 +169,9 @@ class VisitsFragment : Fragment(), CompleteVisitListener {
         visitsRVAdapter.itemsList = list
     }
 
-    override fun visitCompleted(id: String) {
+    override fun visitCompleted() {
         Timber.d("VisitsFragment_TAG: visitCompleted: ")
-        Toast.makeText(requireActivity(), "UPDATE LIST WITH ID: $id", Toast.LENGTH_SHORT).show()
+        viewModel.loading.postValue(true)
+        getVisits()
     }
 }

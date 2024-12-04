@@ -63,7 +63,7 @@ class CompleteVisitDialogFragment : DialogFragment() {
         viewModel.successOperation.observe(requireActivity()) { success ->
             if (success) {
                 dismiss()
-                listener?.visitCompleted(viewModel.documentId)
+                listener?.visitCompleted()
             }
         }
     }

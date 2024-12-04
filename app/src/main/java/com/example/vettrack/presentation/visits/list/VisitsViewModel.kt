@@ -1,7 +1,6 @@
 package com.example.vettrack.presentation.visits.list
 
-import android.os.Build
-import androidx.annotation.RequiresApi
+import android.annotation.SuppressLint
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
@@ -46,7 +45,7 @@ class VisitsViewModel(private val visitsRepository: VisitsRepository) : ViewMode
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
+    @SuppressLint("NewApi")
     fun getVisits(uid: String) {
         Timber.d("VisitsViewModel_TAG: getVisits: ")
         visitsRepository.getVisits(
@@ -62,10 +61,10 @@ class VisitsViewModel(private val visitsRepository: VisitsRepository) : ViewMode
                 visitsNum.postValue("0")
             }
         )
+        loading.postValue(false)
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun validatePendingStatus(listResponse: List<VisitModel>) {
+    private fun validatePendingStatus(listResponse: List<VisitModel>) {
         Timber.d("VisitsViewModel_TAG: validatePendingStatus: ")
         val list = listResponse.map { visit ->
             if (visit.pending && !isVisitPending(visit.date))
@@ -79,7 +78,7 @@ class VisitsViewModel(private val visitsRepository: VisitsRepository) : ViewMode
 
     private fun filterVisitsByStatus(future: Boolean) {
         Timber.d("VisitsViewModel_TAG: filterVisitsByStatus: ")
-        val list = if(future) futureList.value else pastList.value
+        val list = if (future) futureList.value else pastList.value
         visitsList.postValue(list)
         visitsNum.postValue(list?.size.toString())
     }
