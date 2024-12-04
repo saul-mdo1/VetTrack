@@ -20,7 +20,7 @@ import com.example.vettrack.presentation.utils.COMPLETE_VISIT_FRAGMENT_TAG
 import com.example.vettrack.presentation.utils.VISIT_ID_TAG
 import com.example.vettrack.presentation.visits.details.VisitDetailsActivity
 import com.example.vettrack.presentation.visits.completeVisit.CompleteVisitDialogFragment
-import com.example.vettrack.presentation.visits.details.CompleteVisitListener
+import com.example.vettrack.presentation.visits.completeVisit.CompleteVisitListener
 import com.example.vettrack.presentation.visits.register.RegisterVisitActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.koin.androidx.viewmodel.ext.android.viewModel

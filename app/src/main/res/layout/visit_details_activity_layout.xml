@@ -157,7 +157,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:barrierDirection="end"
-                        app:constraint_referenced_ids="tvDateSub, tvReasonSub, tvClinicNameSub, tvPetNameSub, tvPetWeightSub, tvCitySub, tvTotalPaidSub, tvObservationsSub" />
+                        app:constraint_referenced_ids="tvDateSub, tvReasonSub, tvClinicNameSub, tvPetNameSub, tvPetWeightSub, tvCitySub, tvTotalPaidSub" />
 
                     <TextView
                         android:id="@+id/tvDate"

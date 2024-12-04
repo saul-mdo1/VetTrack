@@ -32,8 +32,8 @@
     <string name="txt_scheduled_visit">Visitas futuras</string>
     <string name="txt_reason_mandatory">Motivo*</string>
     <string name="txt_reason">Motivo</string>
-    <string name="txt_pet_weight_mandatory">Peso de mascota*</string>
-    <string name="txt_pet_weight">Peso de mascota</string>
+    <string name="txt_pet_weight_mandatory">Peso*</string>
+    <string name="txt_pet_weight">Peso</string>
     <string name="txt_pet_name_mandatory">Nombre de mascota*</string>
     <string name="txt_pet_name">Mascota</string>
     <string name="txt_clinic_name_mandatory">Nombre de clinica*</string>

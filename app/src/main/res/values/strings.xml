@@ -30,8 +30,8 @@
     <string name="txt_scheduled_visit">Scheduled visits</string>
     <string name="txt_reason_mandatory">Reason*</string>
     <string name="txt_reason">Reason</string>
-    <string name="txt_pet_weight_mandatory">Pet Weight*</string>
-    <string name="txt_pet_weight">Pet Weight</string>
+    <string name="txt_pet_weight_mandatory">Weight*</string>
+    <string name="txt_pet_weight">Weight</string>
     <string name="txt_pet_name_mandatory">Pet Name*</string>
     <string name="txt_pet_name">Pet Name</string>
     <string name="txt_clinic_name_mandatory">Clinic Name*</string>
