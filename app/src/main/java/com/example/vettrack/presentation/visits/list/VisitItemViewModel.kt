@@ -21,5 +21,5 @@ class VisitItemViewModel {
         get() = visit?.reason ?: "---"
 
     val enableComplete: Boolean
-        get() = visit?.pending == false && visit?.reason.isNullOrEmpty()
+        get() = (visit?.pending == false && visit?.reason.isNullOrEmpty()) || visit?.pending == true
 }

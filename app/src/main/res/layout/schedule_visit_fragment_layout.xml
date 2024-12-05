@@ -46,7 +46,7 @@
                         android:layout_height="wrap_content"
                         android:enabled="false"
                         android:focusable="true"
-                        android:hint="@string/txt_date"
+                        android:hint="@string/txt_date_mandatory"
                         android:text="@{viewModel.date}"
                         android:textColor="@android:color/black"
                         android:textColorHint="@android:color/black"
@@ -65,7 +65,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/txt_clinic_name"
+                        android:hint="@string/txt_clinic_name_mandatory"
                         android:inputType="text|textCapWords"
                         android:maxLines="1"
                         android:minHeight="48dp"
@@ -84,7 +84,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/txt_pet_name"
+                        android:hint="@string/txt_pet_name_mandatory"
                         android:inputType="text|textCapSentences"
                         android:maxLines="1"
                         android:minHeight="48dp"

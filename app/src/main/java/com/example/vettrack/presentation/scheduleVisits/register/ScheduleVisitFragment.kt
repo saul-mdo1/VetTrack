@@ -109,8 +109,13 @@ class ScheduleVisitFragment : Fragment() {
     private fun initObservers() {
         Timber.d("ScheduleVisitFragment_TAG: initObservers: ")
         viewModel.successOperation.observe(requireActivity()) { success ->
-            if (!success)
+            if (!success) {
+                displayDialog(
+                    isSuccess = false,
+                    message = getString(R.string.txt_error_schedule_visit)
+                ) { }
                 return@observe
+            }
 
             scheduleNotification()
 
@@ -122,16 +127,6 @@ class ScheduleVisitFragment : Fragment() {
             ) {
                 findNavController().navigate(R.id.nav_visits)
             }
-        }
-
-        viewModel.errorOperation.observe(requireActivity()) { error ->
-            if (!error)
-                return@observe
-
-            displayDialog(
-                isSuccess = false,
-                message = getString(R.string.txt_error_schedule_visit)
-            ) { }
         }
     }
 
