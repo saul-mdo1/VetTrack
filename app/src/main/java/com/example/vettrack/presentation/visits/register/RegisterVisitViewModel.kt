@@ -14,6 +14,7 @@ class RegisterVisitViewModel(private val visitsRepository: VisitsRepository) : B
     var isUpdate = false
     val buttonText = MutableLiveData(R.string.txt_register)
 
+    //region VALIDATIONS
     init {
         buttonEnabled.addSource(date) { validateForm() }
         buttonEnabled.addSource(reason) { validateForm() }
@@ -37,15 +38,15 @@ class RegisterVisitViewModel(private val visitsRepository: VisitsRepository) : B
     fun applyAction() {
         Timber.d("RegisterVisitViewModel_TAG: applyAction: ")
         loading.postValue(true)
-        val visit = mapVisit()
         if (isUpdate)
-            updateVisit(visit)
+            updateVisit()
         else
-            registerVisit(visit)
+            registerVisit()
     }
 
-    private fun registerVisit(visit: HashMap<String, Any?>) {
+    override fun registerVisit() {
         Timber.d("RegisterVisitViewModel_TAG: registerVisit: ")
+        val visit = mapVisit()
         visitsRepository.registerVisit(
             visit,
             onSuccess = {
@@ -59,8 +60,9 @@ class RegisterVisitViewModel(private val visitsRepository: VisitsRepository) : B
         )
     }
 
-    private fun updateVisit(visit: HashMap<String, Any?>) {
+    override fun updateVisit() {
         Timber.d("RegisterVisitViewModel_TAG: updateVisit: ")
+        val visit = mapVisit()
         visitsRepository.updateVisit(
             documentId,
             visit,

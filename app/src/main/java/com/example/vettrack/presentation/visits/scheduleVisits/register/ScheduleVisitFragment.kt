@@ -1,4 +1,4 @@
-package com.example.vettrack.presentation.scheduleVisits.register
+package com.example.vettrack.presentation.visits.scheduleVisits.register
 
 import android.os.Bundle
 import android.view.Gravity
@@ -137,7 +137,7 @@ class ScheduleVisitFragment : Fragment() {
             val clinic = viewModel.clinicName.value ?: "---"
             val pet = viewModel.petName.value ?: "---"
 
-            viewModel.scheduleNotification(
+            viewModel.setNotification(
                 requireContext(),
                 getString(R.string.txt_notification_title),
                 getString(R.string.txt_notification_message, pet, date, clinic),

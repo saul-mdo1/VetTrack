@@ -4,7 +4,7 @@ import com.example.vettrack.presentation.authentication.login.LoginViewModel
 import com.example.vettrack.presentation.authentication.signup.SignUpViewModel
 import com.example.vettrack.presentation.home.MainViewModel
 import com.example.vettrack.presentation.pets.list.PetsViewModel
-import com.example.vettrack.presentation.scheduleVisits.register.ScheduleVisitViewModel
+import com.example.vettrack.presentation.visits.scheduleVisits.register.ScheduleVisitViewModel
 import com.example.vettrack.presentation.splash.SplashViewModel
 import com.example.vettrack.presentation.visits.details.VisitDetailsViewModel
 import com.example.vettrack.presentation.visits.list.VisitsViewModel

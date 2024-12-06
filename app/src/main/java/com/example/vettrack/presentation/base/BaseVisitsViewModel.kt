@@ -42,4 +42,12 @@ abstract class BaseVisitsViewModel : ViewModel() {
             "userId" to userId
         )
     }
+
+    open fun registerVisit() {
+        Timber.d("BaseVisitsViewModel_TAG: registerVisit: ")
+    }
+
+    open fun updateVisit() {
+        Timber.d("BaseVisitsViewModel_TAG: updateVisit: ")
+    }
 }

@@ -24,8 +24,8 @@ class CompleteVisitViewModel(private val visitsRepository: VisitsRepository) : B
     }
     //endregion
 
-    fun updateVisit() {
-        Timber.d("RegisterVisitViewModel_TAG: updateVisit: ")
+    override fun updateVisit() {
+        Timber.d("CompleteVisitViewModel_TAG: updateVisit: ")
         val visit = mapVisit()
         visitsRepository.updateVisit(
             documentId,

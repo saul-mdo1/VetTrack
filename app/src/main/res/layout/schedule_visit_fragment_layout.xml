@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.vettrack.presentation.scheduleVisits.register.ScheduleVisitViewModel" />
+            type="com.example.vettrack.presentation.visits.scheduleVisits.register.ScheduleVisitViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
