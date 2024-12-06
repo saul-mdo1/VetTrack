@@ -73,7 +73,7 @@
                             android:layout_height="wrap_content"
                             android:enabled="false"
                             android:focusable="true"
-                            android:hint="@string/txt_date"
+                            android:hint="@string/txt_date_mandatory"
                             android:text="@{viewModel.date}"
                             android:textColor="@android:color/black"
                             android:textColorHint="@android:color/black"
@@ -93,7 +93,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/txt_reason"
+                            android:hint="@string/txt_reason_mandatory"
                             android:inputType="text|textCapSentences"
                             android:maxLines="1"
                             android:minHeight="48dp"
@@ -114,7 +114,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/txt_clinic_name"
+                            android:hint="@string/txt_clinic_name_mandatory"
                             android:inputType="text|textCapWords"
                             android:maxLines="1"
                             android:minHeight="48dp"
@@ -129,8 +129,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        app:startIconDrawable="@drawable/ic_city"
-                        app:endIconMode="clear_text">
+                        app:endIconMode="clear_text"
+                        app:startIconDrawable="@drawable/ic_city">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
@@ -138,10 +138,10 @@
                             android:hint="@string/txt_city"
                             android:inputType="text|textCapWords"
                             android:maxLines="1"
-                            tools:paddingStart="45dp"
                             android:minHeight="48dp"
                             android:text="@={viewModel.city}"
-                            android:textColorHint="@android:color/black" />
+                            android:textColorHint="@android:color/black"
+                            tools:paddingStart="45dp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -156,7 +156,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/txt_total_paid"
+                            android:hint="@string/txt_total_paid_mandatory"
                             android:inputType="number|numberDecimal"
                             android:maxLines="1"
                             android:minHeight="48dp"
@@ -171,19 +171,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp"
-                        app:startIconDrawable="@drawable/ic_pet"
-                        app:endIconMode="clear_text">
+                        app:endIconMode="clear_text"
+                        app:startIconDrawable="@drawable/ic_pet">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/txt_pet_name"
+                            android:hint="@string/txt_pet_name_mandatory"
                             android:inputType="text|textCapSentences"
                             android:maxLines="1"
-                            tools:paddingStart="45dp"
                             android:minHeight="48dp"
                             android:text="@={viewModel.petName}"
-                            android:textColorHint="@android:color/black" />
+                            android:textColorHint="@android:color/black"
+                            tools:paddingStart="45dp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <!--PET WEIGHT-->
@@ -198,7 +198,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/txt_pet_weight"
+                            android:hint="@string/txt_pet_weight_mandatory"
                             android:inputType="numberDecimal"
                             android:maxLines="1"
                             android:minHeight="48dp"

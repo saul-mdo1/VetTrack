@@ -147,9 +147,16 @@ class RegisterVisitActivity : AppCompatActivity() {
     private fun initObservers() {
         Timber.d("RegisterVisitActivity_TAG: initObservers: ")
         viewModel.successOperation.observe(this) { success ->
-            if (!success)
+            if (!success) {
+                displayDialog(
+                    isSuccess = false,
+                    message = if (viewModel.isUpdate)
+                        getString(R.string.txt_error_update_visit)
+                    else
+                        getString(R.string.txt_error_register_visit)
+                ) { }
                 return@observe
-
+            }
             displayDialog(
                 message = if (viewModel.isUpdate)
                     getString(R.string.txt_success_update)
@@ -158,19 +165,6 @@ class RegisterVisitActivity : AppCompatActivity() {
             ) {
                 finish()
             }
-        }
-
-        viewModel.errorOperation.observe(this) { error ->
-            if (!error)
-                return@observe
-
-            displayDialog(
-                isSuccess = false,
-                message = if (viewModel.isUpdate)
-                    getString(R.string.txt_error_update_visit)
-                else
-                    getString(R.string.txt_error_register_visit)
-            ) { }
         }
     }
 

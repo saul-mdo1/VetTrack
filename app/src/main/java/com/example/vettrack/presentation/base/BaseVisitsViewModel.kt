@@ -8,6 +8,7 @@ import timber.log.Timber
 
 abstract class BaseVisitsViewModel : ViewModel() {
     var documentId = ""
+    val loading = MutableLiveData(false)
 
     //region DATA
     val date = MutableLiveData("")

@@ -15,7 +15,6 @@ import timber.log.Timber
 
 class ScheduleVisitViewModel(private val visitRepository: VisitsRepository) : BaseVisitsViewModel() {
     val successOperation = MutableLiveData<Boolean>()
-    val loading = MutableLiveData(false)
 
     //region DATA VALIDATIONS
     init {
