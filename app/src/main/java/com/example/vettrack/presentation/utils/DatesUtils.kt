@@ -1,7 +1,6 @@
 package com.example.vettrack.presentation.utils
 
 import android.os.Build
-import androidx.annotation.RequiresApi
 import com.example.vettrack.models.VisitModel
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
@@ -94,18 +93,22 @@ fun currentDate(): String {
     }
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
 fun List<VisitModel>.sortByDate(): List<VisitModel> {
-    return try {
-        val formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy h:mm a", Locale.getDefault())
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        try {
+            val formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy h:mm a", Locale.getDefault())
 
-        this.sortedBy { dateTimeString ->
-            LocalDateTime.parse(dateTimeString.date, formatter)
+            this.sortedByDescending { visit ->
+                val dateTimeString =
+                    visit.date.lowercase().replace("am", "a. m.").replace("pm", "p. m.")
+                LocalDateTime.parse(dateTimeString, formatter)
+            }
+        } catch (e: Exception) {
+            Timber.d("DatesUtils_TAG: sortByDate: ERROR: ${e.message} ")
+            this
         }
-    } catch (e: Exception) {
-        Timber.d("DatesUtils_TAG: sortByDate: ERROR: ${e.message} ")
+    } else
         this
-    }
 }
 
 fun isVisitPending(dateString: String?): Boolean {
