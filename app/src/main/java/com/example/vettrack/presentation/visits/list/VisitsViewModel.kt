@@ -48,6 +48,7 @@ class VisitsViewModel(private val visitsRepository: VisitsRepository) : ViewMode
     @SuppressLint("NewApi")
     fun getVisits(uid: String) {
         Timber.d("VisitsViewModel_TAG: getVisits: ")
+        loading.postValue(true)
         visitsRepository.getVisits(
             uid,
             onSuccess = { visits ->

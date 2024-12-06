@@ -1,5 +1,6 @@
 package com.example.vettrack.presentation.visits.list
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -7,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
@@ -75,7 +77,7 @@ class VisitsFragment : Fragment(), CompleteVisitListener {
             updateClicked = { visitItem ->
                 val intent = Intent(requireActivity(), RegisterVisitActivity::class.java)
                 intent.putExtra(VISIT_ID_TAG, visitItem.id)
-                startActivity(intent)
+               activityResult.launch(intent)
             },
             deleteClicked = { visitItem ->
                 showConfirmDelete(visitItem)
@@ -168,6 +170,14 @@ class VisitsFragment : Fragment(), CompleteVisitListener {
         }
         visitsRVAdapter.itemsList = list
     }
+
+    private val activityResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            Timber.d("VisitsFragment_TAG: activityResult: ")
+            if (it.resultCode == Activity.RESULT_OK) {
+                getVisits()
+            }
+        }
 
     override fun visitCompleted() {
         Timber.d("VisitsFragment_TAG: visitCompleted: ")

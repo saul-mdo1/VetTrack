@@ -1,6 +1,7 @@
 package com.example.vettrack.presentation.visits.register
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.ViewGroup
@@ -61,6 +62,7 @@ class RegisterVisitActivity : AppCompatActivity() {
     private fun initViews() {
         Timber.d("RegisterVisitActivity_TAG: initViews: ")
         layout.toolbar.setNavigationOnClickListener {
+            setResult(Activity.RESULT_CANCELED)
             finish()
         }
 
@@ -163,6 +165,7 @@ class RegisterVisitActivity : AppCompatActivity() {
                 else
                     getString(R.string.txt_success_register)
             ) {
+                setResult(Activity.RESULT_OK)
                 finish()
             }
         }
