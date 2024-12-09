@@ -77,7 +77,7 @@ class VisitsFragment : Fragment(), CompleteVisitListener {
             updateClicked = { visitItem ->
                 val intent = Intent(requireActivity(), RegisterVisitActivity::class.java)
                 intent.putExtra(VISIT_ID_TAG, visitItem.id)
-               activityResult.launch(intent)
+                activityResult.launch(intent)
             },
             deleteClicked = { visitItem ->
                 showConfirmDelete(visitItem)
@@ -113,16 +113,10 @@ class VisitsFragment : Fragment(), CompleteVisitListener {
             .show()
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun initObservers() {
         Timber.d("VisitsFragment_TAG: initObservers: ")
         viewModel.visitsList.observe(requireActivity()) { visits ->
-            val list = visits.map { v ->
-                VisitItemViewModel().apply {
-                    visit = v
-                }
-            }
-            visitsRVAdapter.itemsList = list
+            mapList(visits)
             viewModel.loading.postValue(false)
         }
 
@@ -142,32 +136,28 @@ class VisitsFragment : Fragment(), CompleteVisitListener {
         layout.svBook.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText.isNullOrBlank()) {
-                    viewModel.visitsList.value?.let {
-                        viewModel.visitsNum.postValue(it.size.toString())
-                        mapList(it)
-                    }
+                    viewModel.searchQuery.postValue(null)
                 }
                 return true
             }
 
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (!query.isNullOrBlank()) {
-                    viewModel.filterList(query.lowercase())?.let {
-                        mapList(it)
-                    }
+                    viewModel.searchQuery.postValue(query)
                 }
                 return true
             }
         })
     }
 
-    private fun mapList(it: List<VisitModel>) {
+    private fun mapList(visits: List<VisitModel>) {
         Timber.d("VisitsFragment_TAG: mapList: ")
-        val list = it.map { v ->
+        val list = visits.map { v ->
             VisitItemViewModel().apply {
                 visit = v
             }
         }
+        viewModel.visitsNum.postValue(list.size.toString())
         visitsRVAdapter.itemsList = list
     }
 

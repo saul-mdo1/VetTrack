@@ -30,12 +30,20 @@ class VisitsViewModel(private val visitsRepository: VisitsRepository) : ViewMode
     val deleted = MutableLiveData<Boolean>()
     val futureEnabled = MutableLiveData<Boolean>()
 
+    val searchQuery = MutableLiveData<String?>()
+
     val visitsList = MediatorLiveData<List<VisitModel>>().apply {
         addSource(futureEnabled) { future ->
-            filterVisitsByStatus(future)
+            if (searchQuery.value == null)
+                filterVisitsByStatus(future)
+            else
+                filterVisits(searchQuery.value, future)
         }
         addSource(_visitsList) {
             filterVisitsByStatus(futureEnabled.value ?: false)
+        }
+        addSource(searchQuery) { searchQuery ->
+            filterVisits(searchQuery, futureEnabled.value ?: false)
         }
     }
 
@@ -62,9 +70,9 @@ class VisitsViewModel(private val visitsRepository: VisitsRepository) : ViewMode
                 Timber.d("VisitsViewModel_TAG: getVisits: ERROR ")
                 _visitsList.postValue(emptyList())
                 visitsNum.postValue("0")
+                loading.postValue(false)
             }
         )
-        loading.postValue(false)
     }
 
     private fun validatePendingStatus(listResponse: List<VisitModel>) {
@@ -83,19 +91,38 @@ class VisitsViewModel(private val visitsRepository: VisitsRepository) : ViewMode
         Timber.d("VisitsViewModel_TAG: filterVisitsByStatus: ")
         val list = if (future) futureList.value else pastList.value
         visitsList.postValue(list)
-        visitsNum.postValue(list?.size.toString())
     }
 
-    fun filterList(query: String): List<VisitModel>? {
+    private fun filterList(query: String, visits: List<VisitModel>?): List<VisitModel>? {
         Timber.d("VisitsViewModel_TAG: filterList: query: $query")
-        val list = visitsList.value?.filter { visit ->
+        val list = visits?.filter { visit ->
             visit.petName.contains(query, ignoreCase = true)
                     || visit.clinicName.lowercase().contains(query, ignoreCase = true)
                     || visit.date.lowercase().contains(query, ignoreCase = true)
                     || visit.reason.lowercase().contains(query, ignoreCase = true)
         }
-        visitsNum.postValue(list?.size.toString())
         return list
+    }
+
+    private fun filterVisits(query: String?, futureEnabled: Boolean) {
+        Timber.d("VisitsViewModel_TAG: filterVisits: query: $query, if future: $futureEnabled ")
+        val list = when (futureEnabled) {
+            true -> {
+                if (query != null)
+                    filterList(query, futureList.value)
+                else
+                    futureList.value
+            }
+
+            false -> {
+                if (query != null)
+                    filterList(query, pastList.value)
+                else
+                    pastList.value
+            }
+        }
+
+        visitsList.postValue(list)
     }
 
     fun deleteVisit(id: String) {
