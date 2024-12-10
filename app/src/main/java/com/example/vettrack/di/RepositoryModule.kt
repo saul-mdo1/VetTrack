@@ -1,6 +1,7 @@
 package com.example.vettrack.di
 
 import com.example.vettrack.repository.AuthRepository
+import com.example.vettrack.repository.PetsRepository
 import com.example.vettrack.repository.VisitsRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -19,7 +20,13 @@ val visitsRepositoryModule = module {
     single { VisitsRepository(get()) }
 }
 
+val petsRepositoryModule = module {
+    single { createFirestore() }
+    single { PetsRepository(get()) }
+}
+
 val repositoryModule = listOf(
     authRepositoryModule,
-    visitsRepositoryModule
+    visitsRepositoryModule,
+    petsRepositoryModule
 )
