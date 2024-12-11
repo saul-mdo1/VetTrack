@@ -10,7 +10,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -28,6 +27,7 @@ import com.example.vettrack.R
 import com.example.vettrack.core.Session
 import com.example.vettrack.databinding.MainActivityLayoutBinding
 import com.example.vettrack.presentation.authentication.login.LoginActivity
+import com.example.vettrack.presentation.pets.register.RegisterPetActivity
 import com.example.vettrack.presentation.visits.register.RegisterVisitActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.navigation.NavigationView
@@ -100,11 +100,9 @@ class MainActivity : AppCompatActivity() {
                         visibility = View.VISIBLE
 
                         setOnClickListener {
-                            Toast.makeText(
-                                this@MainActivity,
-                                "NAVIGATE TO REGISTER PET",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            val intent =
+                                Intent(this@MainActivity, RegisterPetActivity::class.java)
+                            startActivity(intent)
                         }
                     }
                 }

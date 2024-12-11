@@ -26,6 +26,7 @@
     <string name="txt_success_update">The visit was updated successfully</string>
     <string name="txt_success_signup">User created successfully</string>
     <string name="txt_register_visit">Register visit</string>
+    <string name="txt_register_pet">Register pet</string>
     <string name="txt_schedule_visit">Schedule visit</string>
     <string name="txt_scheduled_visit">Scheduled visits</string>
     <string name="txt_reason_mandatory">Reason*</string>
@@ -42,6 +43,18 @@
     <string name="txt_observations">Observations</string>
     <string name="txt_date_mandatory">Date*</string>
     <string name="txt_date">Date</string>
+    <string name="txt_name_mandatory">Name*</string>
+    <string name="txt_name">Name</string>
+    <string name="txt_species_mandatory">Species*</string>
+    <string name="txt_species">Species</string>
+    <string name="txt_genre_mandatory">Genre*</string>
+    <string name="txt_genre">Genre</string>
+    <string name="txt_breed_mandatory">Breed*</string>
+    <string name="txt_breed">Breed</string>
+    <string name="txt_birthdate_mandatory">Birthdate*</string>
+    <string name="txt_birthdate">Birthdate</string>
+    <string name="txt_color_mandatory">Color*</string>
+    <string name="txt_color">Color</string>
     <string name="txt_accept">Accept</string>
     <string name="txt_success">Success</string>
     <string name="txt_error_title">Error</string>
@@ -73,4 +86,8 @@
     <string name="txt_no_visits_registered">No visits registered</string>
     <string name="txt_complete_visit">Complete visit</string>
     <string name="txt_fill_required_fields">Fill the required fields</string>
+
+    <string name="txt_male">Male</string>
+    <string name="txt_female">Female</string>
+    <string name="txt_unknown">Unknown</string>
 </resources>

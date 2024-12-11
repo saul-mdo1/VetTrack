@@ -25,7 +25,7 @@ class RegisterVisitViewModel(private val visitsRepository: VisitsRepository) : B
     }
 
     override fun validateForm() {
-        Timber.d("SignUpViewModel_TAG: validateForm: ")
+        Timber.d("RegisterVisitViewModel_TAG: validateForm: ")
         buttonEnabled.value = !date.value.isNullOrBlank()
                 && !reason.value.isNullOrBlank()
                 && !petWeight.value.isNullOrBlank()

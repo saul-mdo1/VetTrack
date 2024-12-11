@@ -4,6 +4,7 @@ import com.example.vettrack.presentation.authentication.login.LoginViewModel
 import com.example.vettrack.presentation.authentication.signup.SignUpViewModel
 import com.example.vettrack.presentation.home.MainViewModel
 import com.example.vettrack.presentation.pets.list.PetsViewModel
+import com.example.vettrack.presentation.pets.register.RegisterPetViewModel
 import com.example.vettrack.presentation.visits.scheduleVisits.register.ScheduleVisitViewModel
 import com.example.vettrack.presentation.splash.SplashViewModel
 import com.example.vettrack.presentation.visits.details.VisitDetailsViewModel
@@ -24,6 +25,7 @@ val viewModelsModule = module {
     viewModel { ScheduleVisitViewModel(get()) }
     viewModel { PetsViewModel(get()) }
     viewModel { CompleteVisitViewModel(get()) }
+    viewModel { RegisterPetViewModel(get()) }
 }
 
 val presentationModule = listOf(
