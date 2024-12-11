@@ -6,12 +6,13 @@ import androidx.lifecycle.ViewModel
 import com.example.vettrack.R
 import com.example.vettrack.repository.PetsRepository
 import timber.log.Timber
+
 class RegisterPetViewModel(private val petsRepository: PetsRepository) : ViewModel() {
     val loading = MutableLiveData(false)
     val successOperation = MutableLiveData<Boolean>()
 
     val name = MutableLiveData("")
-    val gender = MutableLiveData("")
+    val gender = MutableLiveData(-1)
     val species = MutableLiveData("")
     val birthdate = MutableLiveData("")
     val breed = MutableLiveData("")
@@ -31,7 +32,7 @@ class RegisterPetViewModel(private val petsRepository: PetsRepository) : ViewMod
     private fun validateForm() {
         Timber.d("RegisterPetViewModel_TAG: validateForm: ")
         buttonEnabled.value = !name.value.isNullOrBlank()
-                && !gender.value.isNullOrBlank()
+                && gender.value != -1
                 && !species.value.isNullOrBlank()
     }
     //endregion

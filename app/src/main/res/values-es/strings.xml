@@ -24,8 +24,10 @@
     <string name="txt_create_user">Crear usuario</string>
     <string name="txt_error">Algo salió mal, intente de nuevo</string>
     <string name="txt_success_register">La visita fue registrada con éxito</string>
+    <string name="txt_success_register_pet">La información de la mascota fue registrada con éxito</string>
     <string name="txt_success_schedule">Se agendó la visita el día %1$s con éxito, se le notificará para recordar la visita</string>
     <string name="txt_success_update">La visita fue actualizada con éxito</string>
+    <string name="txt_success_update_pet">La información de la mascota fue actualizada con éxito</string>
     <string name="txt_success_signup">Usuario creado con éxito</string>
     <string name="txt_register_visit">Registrar visita</string>
     <string name="txt_register_pet">Registrar mascota</string>
@@ -61,7 +63,9 @@
     <string name="txt_success">Éxito</string>
     <string name="txt_error_title">Error</string>
     <string name="txt_error_register_visit">La visita no fue registrada, por favor intente mas tarde</string>
+    <string name="txt_error_register_pet">La mascota no fue registrada, por favor intente mas tarde</string>
     <string name="txt_error_update_visit">La visita no fue actualizada, por favor intente mas tarde</string>
+    <string name="txt_error_update_pet">La información de la mascota no fue actualizada, por favor intente mas tarde</string>
     <string name="txt_error_schedule_visit">La visita no fue agendada, por favor intente mas tarde</string>
     <string name="txt_logout_message">¿Seguro que desea cerrar sesión?</string>
 

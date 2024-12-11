@@ -5,6 +5,7 @@ import android.app.Activity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +14,7 @@ import androidx.databinding.DataBindingUtil
 import com.example.vettrack.R
 import com.example.vettrack.core.Session
 import com.example.vettrack.databinding.RegisterPetActivityLayoutBinding
+import com.example.vettrack.models.Gender
 import com.example.vettrack.presentation.utils.DATE_PICKER_DIALOG_TAG
 import com.example.vettrack.presentation.utils.convertMillisToDate
 import com.google.android.material.datepicker.CalendarConstraints
@@ -46,17 +48,17 @@ class RegisterPetActivity : AppCompatActivity() {
                 displayDialog(
                     isSuccess = false,
                     message = if (viewModel.isUpdate)
-                        getString(R.string.txt_error_update_visit)
+                        getString(R.string.txt_error_update_pet)
                     else
-                        getString(R.string.txt_error_register_visit)
+                        getString(R.string.txt_error_register_pet)
                 ) { }
                 return@observe
             }
             displayDialog(
                 message = if (viewModel.isUpdate)
-                    getString(R.string.txt_success_update)
+                    getString(R.string.txt_success_update_pet)
                 else
-                    getString(R.string.txt_success_register)
+                    getString(R.string.txt_success_register_pet)
             ) {
                 setResult(Activity.RESULT_OK)
                 finish()
@@ -67,6 +69,8 @@ class RegisterPetActivity : AppCompatActivity() {
 
     private fun initViews() {
         Timber.d("RegisterPetActivity_TAG: initViews: ")
+        initAutocompleteGender()
+
         layout.toolbar.setNavigationOnClickListener {
             setResult(Activity.RESULT_CANCELED)
             finish()
@@ -74,6 +78,18 @@ class RegisterPetActivity : AppCompatActivity() {
 
         layout.tilDate.setStartIconOnClickListener {
             openDatePicker()
+        }
+    }
+
+    private fun initAutocompleteGender() {
+        Timber.d("RegisterPetActivity_TAG: initAutocompleteGender: ")
+        val genders = Gender.entries.map { getString(it.stringId) }
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, genders)
+        layout.actvGender.setAdapter(adapter)
+
+        layout.actvGender.setOnItemClickListener { _, _, position, _ ->
+            val selectedGenre = Gender.entries[position]
+            viewModel.gender.postValue(selectedGenre.id)
         }
     }
 

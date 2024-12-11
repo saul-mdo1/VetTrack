@@ -22,8 +22,10 @@
     <string name="txt_create_user">Create user</string>
     <string name="txt_error">Something went wrong, try later</string>
     <string name="txt_success_register">The visit was registered successfully</string>
+    <string name="txt_success_register_pet">The pet was registered successfully</string>
     <string name="txt_success_schedule">The visit wa scheduled on %1$s successfully, you\'ll receive a notification reminding you the visit</string>
     <string name="txt_success_update">The visit was updated successfully</string>
+    <string name="txt_success_update_pet">The pet info was updated successfully</string>
     <string name="txt_success_signup">User created successfully</string>
     <string name="txt_register_visit">Register visit</string>
     <string name="txt_register_pet">Register pet</string>
@@ -59,7 +61,9 @@
     <string name="txt_success">Success</string>
     <string name="txt_error_title">Error</string>
     <string name="txt_error_register_visit">The visit couldn\'t be registered, please try later</string>
+    <string name="txt_error_register_pet">The pet couldn\'t be registered, please try later</string>
     <string name="txt_error_update_visit">The visit couldn\'t be updated, please try later</string>
+    <string name="txt_error_update_pet">The pet info couldn\'t be updated, please try later</string>
     <string name="txt_error_schedule_visit">The visit couldn\'t be scheduled, please try later</string>
     <string name="txt_logout_message">Are you sure you want to sign out?</string>
 

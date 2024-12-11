@@ -60,7 +60,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/txt_register_pet" />
 
-                    <!--DATE-->
+                    <!--BIRTHDATE-->
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/tilDate"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -100,6 +100,25 @@
                             android:maxLines="1"
                             android:minHeight="48dp"
                             android:text="@={viewModel.name}"
+                            android:textColorHint="@android:color/black"
+                            tools:paddingStart="45dp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!--GENRE-->
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:minHeight="48dp"
+                        app:startIconDrawable="@drawable/ic_gender">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/actvGender"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/txt_genre_mandatory"
+                            android:maxLines="1"
                             android:textColorHint="@android:color/black"
                             tools:paddingStart="45dp" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -163,27 +182,6 @@
                             android:maxLines="1"
                             android:minHeight="48dp"
                             android:text="@={viewModel.color}"
-                            android:textColorHint="@android:color/black"
-                            tools:paddingStart="45dp" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <!--GENRE-->
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        app:endIconMode="clear_text"
-                        app:startIconDrawable="@drawable/ic_gender">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/txt_genre_mandatory"
-                            android:inputType="text|textCapSentences"
-                            android:maxLines="1"
-                            android:minHeight="48dp"
-                            android:text="@={viewModel.gender}"
                             android:textColorHint="@android:color/black"
                             tools:paddingStart="45dp" />
                     </com.google.android.material.textfield.TextInputLayout>
