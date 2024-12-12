@@ -54,9 +54,9 @@
                 tools:text="23" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvVisits"
+                android:id="@+id/rvPets"
                 android:layout_marginTop="8dp"
-                tools:listitem="@layout/visit_item_layout"
+                tools:listitem="@layout/pet_item_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </LinearLayout>
