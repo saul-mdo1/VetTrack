@@ -78,6 +78,7 @@
     <string name="txt_weight_placeholder">%1$s kg</string>
 
     <string name="txt_visit_details">Detalles de la visita</string>
+    <string name="txt_pet_info">Información</string>
     <string name="txt_update">Actualizar</string>
     <string name="txt_message_delete_visit">¿Desea eliminar la visita con fecha el %1$s?</string>
     <string name="txt_visit_deleted">Visita eliminada con éxito</string>

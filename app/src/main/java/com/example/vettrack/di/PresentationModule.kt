@@ -3,6 +3,7 @@ package com.example.vettrack.di
 import com.example.vettrack.presentation.authentication.login.LoginViewModel
 import com.example.vettrack.presentation.authentication.signup.SignUpViewModel
 import com.example.vettrack.presentation.home.MainViewModel
+import com.example.vettrack.presentation.pets.details.PetDetailsViewModel
 import com.example.vettrack.presentation.pets.list.PetsViewModel
 import com.example.vettrack.presentation.pets.register.RegisterPetViewModel
 import com.example.vettrack.presentation.visits.scheduleVisits.register.ScheduleVisitViewModel
@@ -26,6 +27,7 @@ val viewModelsModule = module {
     viewModel { PetsViewModel(get()) }
     viewModel { CompleteVisitViewModel(get()) }
     viewModel { RegisterPetViewModel(get()) }
+    viewModel { PetDetailsViewModel(get()) }
 }
 
 val presentationModule = listOf(

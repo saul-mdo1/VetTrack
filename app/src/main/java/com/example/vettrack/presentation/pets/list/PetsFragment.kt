@@ -12,7 +12,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.vettrack.core.Session
 import com.example.vettrack.databinding.PetsFragmentLayoutBinding
+import com.example.vettrack.presentation.pets.details.PetDetailsActivity
 import com.example.vettrack.presentation.pets.register.RegisterPetActivity
+import com.example.vettrack.presentation.utils.PET_ID_TAG
 import com.example.vettrack.presentation.utils.PET_TAG
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
@@ -51,11 +53,12 @@ class PetsFragment : Fragment() {
         Timber.d("PetsFragment_TAG: initRVAdapter: ")
         petsRVAdapter = PetsRVAdapter(
             detailsClicked = { petItem ->
-                Toast.makeText(
-                    requireActivity(),
-                    "DETAILS OF PET WITH ID: ${petItem.id}",
-                    Toast.LENGTH_SHORT
-                ).show()
+                val intent = Intent(requireActivity(), PetDetailsActivity::class.java)
+                val bundle = Bundle().apply {
+                    putString(PET_ID_TAG, petItem.id)
+                }
+                intent.putExtras(bundle)
+                activityResult.launch(intent)
             },
             updateClicked = { petItem ->
                 val intent = Intent(requireActivity(), RegisterPetActivity::class.java)
