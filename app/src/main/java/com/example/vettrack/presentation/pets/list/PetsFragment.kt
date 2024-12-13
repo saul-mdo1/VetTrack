@@ -10,12 +10,14 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.vettrack.R
 import com.example.vettrack.core.Session
 import com.example.vettrack.databinding.PetsFragmentLayoutBinding
 import com.example.vettrack.presentation.pets.details.PetDetailsActivity
 import com.example.vettrack.presentation.pets.register.RegisterPetActivity
 import com.example.vettrack.presentation.utils.PET_ID_TAG
 import com.example.vettrack.presentation.utils.PET_TAG
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
@@ -69,11 +71,7 @@ class PetsFragment : Fragment() {
                 activityResult.launch(intent)
             },
             deleteClicked = { petItem ->
-                Toast.makeText(
-                    requireActivity(),
-                    "DELETE PET WITH ID: ${petItem.id}",
-                    Toast.LENGTH_SHORT
-                ).show()
+                showConfirmDelete(petItem)
             }
         )
 
@@ -95,6 +93,31 @@ class PetsFragment : Fragment() {
             }
             petsRVAdapter.itemsList = list
         }
+
+        viewModel.deleted.observe(requireActivity()) { deleted ->
+            if (deleted) {
+                Toast.makeText(
+                    requireActivity(),
+                    getString(R.string.txt_pet_deleted), Toast.LENGTH_SHORT
+                ).show()
+                getPets()
+            }
+        }
+    }
+
+    private fun showConfirmDelete(petItem: PetItemViewModel) {
+        Timber.d("PetsFragment_TAG: showConfirmDelete: pet ${petItem.name}")
+        MaterialAlertDialogBuilder(requireActivity())
+            .setTitle(getString(R.string.txt_title_delete_pet_dialog))
+            .setMessage(getString(R.string.txt_message_delete_pet, petItem.name))
+            .setPositiveButton(resources.getString(R.string.txt_accept)) { _, _ ->
+                petItem.id?.let {
+                    viewModel.deleteVisit(it)
+                }
+            }
+            .setNegativeButton(resources.getString(R.string.txt_cancel), null)
+            .create()
+            .show()
     }
 
     private val activityResult =

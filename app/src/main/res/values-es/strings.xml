@@ -81,8 +81,11 @@
     <string name="txt_pet_info">Información</string>
     <string name="txt_update">Actualizar</string>
     <string name="txt_message_delete_visit">¿Desea eliminar la visita con fecha el %1$s?</string>
+    <string name="txt_message_delete_pet">¿Desea remover a %1$s de la lista?</string>
     <string name="txt_visit_deleted">Visita eliminada con éxito</string>
+    <string name="txt_pet_deleted">Mascota removida con éxito</string>
     <string name="txt_title_delete_visit_dialog">Eliminar visita</string>
+    <string name="txt_title_delete_pet_dialog">Remover mascota</string>
     <string name="txt_notification_message">%1$s y tu tienen una visita en la clincia %3$s.</string>
     <string name="txt_notification_title">¡Recuerda!</string>
     <string name="txt_notification_message_default">Tienes una visita agendada para hoy.</string>

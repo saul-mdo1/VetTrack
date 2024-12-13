@@ -79,8 +79,11 @@
     <string name="txt_pet_info">Pet Info</string>
     <string name="txt_update">Update</string>
     <string name="txt_message_delete_visit">Are you sure you want to delete the visit dated %1$s?</string>
+    <string name="txt_message_delete_pet">Are you sure you want to remove %1$s from the list?</string>
     <string name="txt_visit_deleted">Visit deleted successfully</string>
+    <string name="txt_pet_deleted">Pet removed successfully</string>
     <string name="txt_title_delete_visit_dialog">Delete visit</string>
+    <string name="txt_title_delete_pet_dialog">Delete visit</string>
     <string name="txt_notification_message">%1$s and you have a visit scheduled at the clinic %3$s.</string>
     <string name="txt_notification_title">Remember!</string>
     <string name="txt_notification_message_default">You have a scheduled vet visit today.</string>

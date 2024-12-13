@@ -11,6 +11,7 @@ import timber.log.Timber
 class PetsViewModel(private val petsRepository: PetsRepository) : ViewModel() {
     private val _petsList = MutableLiveData(emptyList<PetModel>())
     val loading = MutableLiveData(true)
+    val deleted = MutableLiveData<Boolean>()
 
     val petsList: LiveData<List<PetModel>>
         get() = _petsList
@@ -37,6 +38,22 @@ class PetsViewModel(private val petsRepository: PetsRepository) : ViewModel() {
             onFailure = {
                 _petsList.postValue(emptyList())
                 petsNum.postValue("0")
+                loading.postValue(false)
+            }
+        )
+    }
+
+    fun deleteVisit(id: String) {
+        Timber.d("VisitsViewModel_TAG: deleteVisit: ")
+        loading.postValue(true)
+        petsRepository.deletePet(
+            id,
+            onSuccess = {
+                deleted.postValue(true)
+                loading.postValue(false)
+            },
+            onFailure = {
+                deleted.postValue(false)
                 loading.postValue(false)
             }
         )
