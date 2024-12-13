@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.vettrack.R
@@ -39,6 +40,7 @@ class PetsFragment : Fragment() {
 
         initRVAdapter()
         initObservers()
+        initSearchView()
         getPets()
 
         return layout.root
@@ -83,6 +85,25 @@ class PetsFragment : Fragment() {
         }
     }
 
+    private fun initSearchView() {
+        Timber.d("PetsFragment_TAG: initSearchView: ")
+        layout.svPets.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText.isNullOrBlank()) {
+                    viewModel.searchQuery.postValue(null)
+                }
+                return true
+            }
+
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (!query.isNullOrBlank()) {
+                    viewModel.searchQuery.postValue(query)
+                }
+                return true
+            }
+        })
+    }
+
     private fun initObservers() {
         Timber.d("PetsFragment_TAG: initObservers: ")
         viewModel.petsList.observe(requireActivity()) { petsList ->
@@ -92,6 +113,7 @@ class PetsFragment : Fragment() {
                 }
             }
             petsRVAdapter.itemsList = list
+            viewModel.petsNum.postValue(list.size.toString())
         }
 
         viewModel.deleted.observe(requireActivity()) { deleted ->

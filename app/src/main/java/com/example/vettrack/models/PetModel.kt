@@ -10,7 +10,7 @@ data class PetModel(
     val species: String = "",
     val birthdate: String? = "",
     val breed: String? = "",
-    val color: String = ""
+    val color: String? = ""
 ):Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString().toString(),

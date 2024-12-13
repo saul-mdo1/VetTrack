@@ -1,6 +1,5 @@
 package com.example.vettrack.presentation.pets.list
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,12 +11,20 @@ class PetsViewModel(private val petsRepository: PetsRepository) : ViewModel() {
     private val _petsList = MutableLiveData(emptyList<PetModel>())
     val loading = MutableLiveData(true)
     val deleted = MutableLiveData<Boolean>()
-
-    val petsList: LiveData<List<PetModel>>
-        get() = _petsList
-
     val petsNum = MutableLiveData("0")
     val searchQuery = MutableLiveData<String?>()
+
+    val petsList = MediatorLiveData<List<PetModel>>().apply {
+        addSource(_petsList) {
+            this.postValue(it)
+        }
+        addSource(searchQuery) { searchQuery ->
+            if (searchQuery != null)
+                filterPets(searchQuery)
+            else
+                this.postValue(_petsList.value)
+        }
+    }
 
     val emptyListVisible = MediatorLiveData<Boolean>().apply {
         addSource(petsList) { visits ->
@@ -57,5 +64,16 @@ class PetsViewModel(private val petsRepository: PetsRepository) : ViewModel() {
                 loading.postValue(false)
             }
         )
+    }
+
+    private fun filterPets(query: String) {
+        Timber.d("PetsViewModel_TAG: filterPets: ")
+        val list = petsList.value?.filter { visit ->
+            visit.name.contains(query, ignoreCase = true)
+                    || visit.species.lowercase().contains(query, ignoreCase = true)
+                    || visit.breed?.lowercase()?.contains(query, ignoreCase = true) == true
+                    || visit.color?.lowercase()?.contains(query, ignoreCase = true) == true
+        }
+        petsList.postValue(list)
     }
 }
