@@ -1,7 +1,6 @@
 package com.example.vettrack.repository
 
 import com.example.vettrack.models.PetModel
-import com.example.vettrack.models.VisitModel
 import com.google.firebase.firestore.FirebaseFirestore
 import timber.log.Timber
 
