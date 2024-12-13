@@ -15,7 +15,10 @@ import com.example.vettrack.R
 import com.example.vettrack.core.Session
 import com.example.vettrack.databinding.RegisterPetActivityLayoutBinding
 import com.example.vettrack.models.Gender
+import com.example.vettrack.models.PetModel
 import com.example.vettrack.presentation.utils.DATE_PICKER_DIALOG_TAG
+import com.example.vettrack.presentation.utils.PET_TAG
+import com.example.vettrack.presentation.utils.convertDateToMills
 import com.example.vettrack.presentation.utils.convertMillisToDate
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointBackward
@@ -36,9 +39,20 @@ class RegisterPetActivity : AppCompatActivity() {
         layout.viewModel = viewModel
 
         initObservers()
-        initViews()
+        getPet()
 
         viewModel.userId = Session.user?.uid ?: ""
+
+        initViews()
+    }
+
+    @Suppress("DEPRECATION")
+    private fun getPet() {
+        Timber.d("RegisterPetActivity_TAG: getPetId: ")
+        intent.extras?.getParcelable<PetModel>(PET_TAG)?.let { pet ->
+            viewModel.documentId = pet.id
+            viewModel.pet.postValue(pet)
+        }
     }
 
     private fun initObservers() {
@@ -63,7 +77,17 @@ class RegisterPetActivity : AppCompatActivity() {
                 setResult(Activity.RESULT_OK)
                 finish()
             }
+        }
 
+        viewModel.pet.observe(this) {
+            viewModel.isUpdate = true
+            viewModel.buttonText.postValue(R.string.txt_update)
+            viewModel.screenTitle.postValue(R.string.txt_update_pet)
+
+            viewModel.setPetData(it)
+
+            val gender = Gender.fromId(it.gender)
+            layout.actvGender.setText(gender.stringId)
         }
     }
 
@@ -95,7 +119,17 @@ class RegisterPetActivity : AppCompatActivity() {
 
     private fun openDatePicker() {
         Timber.d("RegisterPetActivity_TAG: openDatePicker: ")
-        val dateMills: Long = MaterialDatePicker.todayInUtcMilliseconds()
+        var dateMills: Long = MaterialDatePicker.todayInUtcMilliseconds()
+        try {
+            viewModel.birthdate.value?.let { date ->
+                if (date.isNotBlank()) {
+                    dateMills = convertDateToMills(date)
+                }
+            }
+        } catch (e: Exception) {
+            Timber.d("RegisterPetActivity_TAG: openDatePicker: ERROR set date: ${e.message} ")
+        }
+
         val constraints =
             CalendarConstraints.Builder().setValidator(DateValidatorPointBackward.now()).build()
 

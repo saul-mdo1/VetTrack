@@ -4,12 +4,14 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.vettrack.R
+import com.example.vettrack.models.PetModel
 import com.example.vettrack.repository.PetsRepository
 import timber.log.Timber
 
 class RegisterPetViewModel(private val petsRepository: PetsRepository) : ViewModel() {
     val loading = MutableLiveData(false)
     val successOperation = MutableLiveData<Boolean>()
+    val pet = MutableLiveData<PetModel>()
 
     val name = MutableLiveData("")
     val gender = MutableLiveData(-1)
@@ -20,7 +22,9 @@ class RegisterPetViewModel(private val petsRepository: PetsRepository) : ViewMod
     var userId = ""
 
     var isUpdate = false
+    var documentId = ""
     val buttonText = MutableLiveData(R.string.txt_register)
+    val screenTitle = MutableLiveData(R.string.txt_register_pet)
 
     //region VALIDATIONS
     val buttonEnabled = MediatorLiveData<Boolean>().apply {
@@ -42,12 +46,30 @@ class RegisterPetViewModel(private val petsRepository: PetsRepository) : ViewMod
         loading.postValue(true)
         if (!isUpdate)
             registerPet()
+        else
+            updatePet()
     }
 
     private fun registerPet() {
         Timber.d("RegisterPetViewModel_TAG: registerPet: ")
         petsRepository.registerPet(
             mapPet(),
+            onSuccess = {
+                successOperation.postValue(true)
+                loading.postValue(false)
+            },
+            onFailure = {
+                successOperation.postValue(false)
+                loading.postValue(false)
+            }
+        )
+    }
+
+    private fun updatePet() {
+        Timber.d("RegisterPetViewModel_TAG: updatePet: ")
+        petsRepository.updatePet(
+            mapPet(),
+            documentId,
             onSuccess = {
                 successOperation.postValue(true)
                 loading.postValue(false)
@@ -72,4 +94,13 @@ class RegisterPetViewModel(private val petsRepository: PetsRepository) : ViewMod
         )
     }
 
+    fun setPetData(pet: PetModel) {
+        Timber.d("RegisterPetViewModel_TAG: setPetData: ")
+        name.postValue(pet.name)
+        gender.postValue(pet.gender)
+        species.postValue(pet.species)
+        birthdate.postValue(pet.birthdate)
+        breed.postValue(pet.breed)
+        color.postValue(pet.color)
+    }
 }

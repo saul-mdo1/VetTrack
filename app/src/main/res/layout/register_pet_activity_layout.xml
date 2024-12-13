@@ -58,7 +58,8 @@
                         style="@style/TextAppearance.Material3.HeadlineSmall"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/txt_register_pet" />
+                        android:text="@{viewModel.screenTitle}"
+                        tools:text="@string/txt_register_pet" />
 
                     <!--BIRTHDATE-->
                     <com.google.android.material.textfield.TextInputLayout
@@ -104,7 +105,7 @@
                             tools:paddingStart="45dp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <!--GENRE-->
+                    <!--GENDER-->
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                         android:layout_width="match_parent"

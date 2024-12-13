@@ -31,6 +31,7 @@
     <string name="txt_success_signup">Usuario creado con éxito</string>
     <string name="txt_register_visit">Registrar visita</string>
     <string name="txt_register_pet">Registrar mascota</string>
+    <string name="txt_update_pet">Actualizar mascota</string>
     <string name="txt_schedule_visit">Agendar visita</string>
     <string name="txt_scheduled_visit">Visitas futuras</string>
     <string name="txt_reason_mandatory">Motivo*</string>
@@ -90,6 +91,7 @@
     <string name="txt_past_visits">Pasadas</string>
     <string name="txt_future_visits">Futuras</string>
     <string name="txt_no_visits_registered">No hay visitas registradas</string>
+    <string name="txt_no_pets_registered">No hay mascotas registradas</string>
     <string name="txt_complete_visit">Completar la visita</string>
     <string name="txt_fill_required_fields">Introduce la información requerida</string>
 

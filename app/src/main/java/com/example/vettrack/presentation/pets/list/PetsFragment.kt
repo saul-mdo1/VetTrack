@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.vettrack.core.Session
 import com.example.vettrack.databinding.PetsFragmentLayoutBinding
 import com.example.vettrack.presentation.pets.register.RegisterPetActivity
-import com.example.vettrack.presentation.utils.PET_ID_TAG
+import com.example.vettrack.presentation.utils.PET_TAG
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
@@ -59,7 +59,10 @@ class PetsFragment : Fragment() {
             },
             updateClicked = { petItem ->
                 val intent = Intent(requireActivity(), RegisterPetActivity::class.java)
-                intent.putExtra(PET_ID_TAG, petItem.id)
+                val bundle = Bundle().apply {
+                    putParcelable(PET_TAG, petItem.pet)
+                }
+                intent.putExtras(bundle)
                 activityResult.launch(intent)
             },
             deleteClicked = { petItem ->

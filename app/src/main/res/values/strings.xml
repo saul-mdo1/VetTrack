@@ -29,6 +29,7 @@
     <string name="txt_success_signup">User created successfully</string>
     <string name="txt_register_visit">Register visit</string>
     <string name="txt_register_pet">Register pet</string>
+    <string name="txt_update_pet">Update pet</string>
     <string name="txt_schedule_visit">Schedule visit</string>
     <string name="txt_scheduled_visit">Scheduled visits</string>
     <string name="txt_reason_mandatory">Reason*</string>
@@ -88,6 +89,7 @@
     <string name="txt_past_visits">Past</string>
     <string name="txt_future_visits">Future</string>
     <string name="txt_no_visits_registered">No visits registered</string>
+    <string name="txt_no_pets_registered">No pets registered</string>
     <string name="txt_complete_visit">Complete visit</string>
     <string name="txt_fill_required_fields">Fill the required fields</string>
 

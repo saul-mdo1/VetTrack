@@ -45,4 +45,24 @@ class PetsRepository(private val firestore: FirebaseFirestore) {
                 onFailure()
             }
     }
+
+    fun updatePet(
+        pet: HashMap<String, Any?>,
+        documentId: String,
+        onSuccess: () -> Unit,
+        onFailure: () -> Unit
+    ) {
+        Timber.d("PetsRepository_TAG: updatePet: ID $documentId ")
+        firestore.collection(PETS_COLLECTION)
+            .document(documentId)
+            .update(pet)
+            .addOnSuccessListener {
+                Timber.d("PetsRepository_TAG: registerPet:SUCCESS:")
+                onSuccess()
+            }
+            .addOnFailureListener { e ->
+                Timber.d("PetsRepository_TAG: registerPet: ${e.message}")
+                onFailure()
+            }
+    }
 }
