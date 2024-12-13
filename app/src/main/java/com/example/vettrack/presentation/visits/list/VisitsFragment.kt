@@ -20,7 +20,7 @@ import com.example.vettrack.databinding.VisitsFragmentLayoutBinding
 import com.example.vettrack.models.VisitModel
 import com.example.vettrack.presentation.utils.COMPLETE_VISIT_FRAGMENT_TAG
 import com.example.vettrack.presentation.utils.VISIT_ID_TAG
-import com.example.vettrack.presentation.utils.showConfirmDeleteDialog
+import com.example.vettrack.presentation.utils.showAlertDialog
 import com.example.vettrack.presentation.visits.completeVisit.CompleteVisitDialogFragment
 import com.example.vettrack.presentation.visits.completeVisit.CompleteVisitListener
 import com.example.vettrack.presentation.visits.details.VisitDetailsActivity
@@ -100,10 +100,13 @@ class VisitsFragment : Fragment(), CompleteVisitListener {
 
     private fun showConfirmDelete(visitItem: VisitItemViewModel) {
         Timber.d("VisitsFragment_TAG: showConfirmDelete: visit on ${visitItem.date} ")
-        showConfirmDeleteDialog(
-           context = requireContext(),
-           title = getString(R.string.txt_title_delete_visit_dialog),
+        showAlertDialog(
+            context = requireContext(),
+            title = getString(R.string.txt_title_delete_visit_dialog),
             message = getString(R.string.txt_message_delete_visit, visitItem.date),
+            hasCancelButton = true,
+            isCancelable = true,
+            icon = null,
             onPositiveButtonClicked = {
                 visitItem.id?.let {
                     viewModel.deleteVisit(it)

@@ -18,7 +18,7 @@ import com.example.vettrack.presentation.pets.details.PetDetailsActivity
 import com.example.vettrack.presentation.pets.register.RegisterPetActivity
 import com.example.vettrack.presentation.utils.PET_ID_TAG
 import com.example.vettrack.presentation.utils.PET_TAG
-import com.example.vettrack.presentation.utils.showConfirmDeleteDialog
+import com.example.vettrack.presentation.utils.showAlertDialog
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
@@ -129,10 +129,13 @@ class PetsFragment : Fragment() {
 
     private fun showConfirmDelete(petItem: PetItemViewModel) {
         Timber.d("PetsFragment_TAG: showConfirmDelete: pet ${petItem.name}")
-        showConfirmDeleteDialog(
+        showAlertDialog(
             context = requireContext(),
             title = getString(R.string.txt_title_delete_pet_dialog),
             message = getString(R.string.txt_message_delete_pet, petItem.name),
+            hasCancelButton = true,
+            icon = null,
+            isCancelable = true,
             onPositiveButtonClicked = {
                 petItem.id?.let {
                     viewModel.deleteVisit(it)

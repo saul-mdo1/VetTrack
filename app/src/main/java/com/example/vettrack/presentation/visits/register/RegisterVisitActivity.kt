@@ -3,10 +3,6 @@ package com.example.vettrack.presentation.visits.register
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Bundle
-import android.view.Gravity
-import android.view.ViewGroup
-import android.widget.LinearLayout
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.databinding.DataBindingUtil
@@ -20,10 +16,10 @@ import com.example.vettrack.presentation.utils.convertDateToMills
 import com.example.vettrack.presentation.utils.convertMillisToDate
 import com.example.vettrack.presentation.utils.getTime
 import com.example.vettrack.presentation.utils.parseTimeToHourMinute
+import com.example.vettrack.presentation.utils.showAlertDialog
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.MaterialTimePicker.INPUT_MODE_KEYBOARD
 import com.google.android.material.timepicker.TimeFormat
@@ -191,26 +187,16 @@ class RegisterVisitActivity : AppCompatActivity() {
 
         drawableIcon?.setTint(resources.getColor(R.color.md_theme_primary, null))
 
-        val dialog = MaterialAlertDialogBuilder(this)
-            .setTitle(title)
-            .setMessage(message)
-            .setIcon(drawableIcon)
-            .setCancelable(false)
-            .setPositiveButton(resources.getString(R.string.txt_accept)) { _, _ ->
+        showAlertDialog(
+            context = this,
+            title = title,
+            message = message,
+            hasCancelButton = false,
+            isCancelable = false,
+            icon = drawableIcon,
+            onPositiveButtonClicked = {
                 onAccept()
-            }.create()
-
-        dialog.setOnShowListener {
-            dialog.getButton(AlertDialog.BUTTON_POSITIVE)
-                ?.setTextColor(resources.getColor(R.color.md_theme_primary, null))
-
-            val positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
-            val layoutParams = positiveButton.layoutParams as LinearLayout.LayoutParams
-            layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
-            positiveButton.layoutParams = layoutParams
-            positiveButton.gravity = Gravity.CENTER
-        }
-
-        dialog.show()
+            }
+        )
     }
 }
