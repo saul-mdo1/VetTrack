@@ -1,6 +1,5 @@
 package com.example.vettrack.presentation.visits.register
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -9,16 +8,14 @@ import androidx.databinding.DataBindingUtil
 import com.example.vettrack.R
 import com.example.vettrack.core.Session
 import com.example.vettrack.databinding.RegisterVisitActivityLayoutBinding
-import com.example.vettrack.presentation.utils.DATE_PICKER_DIALOG_TAG
 import com.example.vettrack.presentation.utils.TIME_PICKER_DIALOG_TAG
 import com.example.vettrack.presentation.utils.VISIT_ID_TAG
 import com.example.vettrack.presentation.utils.convertDateToMills
 import com.example.vettrack.presentation.utils.convertMillisToDate
 import com.example.vettrack.presentation.utils.getTime
+import com.example.vettrack.presentation.utils.openDatePicker
 import com.example.vettrack.presentation.utils.parseTimeToHourMinute
 import com.example.vettrack.presentation.utils.showAlertDialog
-import com.google.android.material.datepicker.CalendarConstraints
-import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.MaterialTimePicker.INPUT_MODE_KEYBOARD
@@ -63,41 +60,36 @@ class RegisterVisitActivity : AppCompatActivity() {
         }
 
         layout.tilDate.setStartIconOnClickListener {
-            openDatePicker()
+            showDatePicker()
         }
     }
 
-    private fun openDatePicker() {
-        Timber.d("RegisterVisitActivity_TAG: openDatePicker: ")
+    private fun showDatePicker() {
+        Timber.d("RegisterVisitActivity_TAG: showDatePicker: ")
         val dateTime: String? = if (viewModel.isUpdate) viewModel.date.value else null
-        var dateMills: Long = MaterialDatePicker.todayInUtcMilliseconds()
 
-        try {
+        val dateMills: Long = try {
             dateTime?.let {
                 if (it.isNotBlank()) {
                     val dateString = it.split(" ")[0]
-                    dateMills = convertDateToMills(dateString)
-                }
-            }
+                    convertDateToMills(dateString)
+                } else
+                    MaterialDatePicker.todayInUtcMilliseconds()
+            } ?: MaterialDatePicker.todayInUtcMilliseconds()
         } catch (e: Exception) {
-            Timber.d("RegisterVisitActivity_TAG: openDatePicker: ERROR set date: ${e.message} ")
-            dateMills = MaterialDatePicker.todayInUtcMilliseconds()
+            Timber.d("RegisterVisitActivity_TAG: showDatePicker: ERROR set date: ${e.message} ")
+            MaterialDatePicker.todayInUtcMilliseconds()
         }
 
-        val constraints =
-            CalendarConstraints.Builder().setValidator(DateValidatorPointBackward.now()).build()
-
-        val datePicker = MaterialDatePicker.Builder.datePicker()
-            .setCalendarConstraints(constraints)
-            .setSelection(dateMills)
-            .build()
-
-        datePicker.addOnPositiveButtonClickListener { dateLong ->
-            val date = convertMillisToDate(dateLong)
-            openTimePicker(date)
-        }
-
-        datePicker.show(supportFragmentManager, DATE_PICKER_DIALOG_TAG)
+        openDatePicker(
+            dateMills = dateMills,
+            futureConstraints = false,
+            supportFragmentManager,
+            onPositiveButtonClicked = { dateLong ->
+                val date = convertMillisToDate(dateLong)
+                openTimePicker(date)
+            }
+        )
     }
 
     private fun openTimePicker(date: String) {
@@ -167,7 +159,6 @@ class RegisterVisitActivity : AppCompatActivity() {
         }
     }
 
-    @SuppressLint("PrivateResource")
     private fun displayDialog(
         isSuccess: Boolean = true,
         message: String,

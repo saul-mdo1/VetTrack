@@ -14,13 +14,11 @@ import androidx.navigation.fragment.findNavController
 import com.example.vettrack.R
 import com.example.vettrack.core.Session
 import com.example.vettrack.databinding.ScheduleVisitFragmentLayoutBinding
-import com.example.vettrack.presentation.utils.DATE_PICKER_DIALOG_TAG
 import com.example.vettrack.presentation.utils.TIME_PICKER_DIALOG_TAG
 import com.example.vettrack.presentation.utils.convertDateTimeToMills
 import com.example.vettrack.presentation.utils.convertMillisToDate
 import com.example.vettrack.presentation.utils.getTime
-import com.google.android.material.datepicker.CalendarConstraints
-import com.google.android.material.datepicker.DateValidatorPointForward
+import com.example.vettrack.presentation.utils.openDatePicker
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.timepicker.MaterialTimePicker
@@ -61,27 +59,21 @@ class ScheduleVisitFragment : Fragment() {
     private fun initViews() {
         Timber.d("ScheduleVisitFragment_TAG: initViews: ")
         layout.tilDate.setStartIconOnClickListener {
-            openDatePicker()
+            showDatePicker()
         }
     }
 
-    private fun openDatePicker() {
-        Timber.d("ScheduleVisitFragment_TAG: openDatePicker: ")
-        val constraints =
-            CalendarConstraints.Builder().setValidator(DateValidatorPointForward.now()).build()
-
-        val datePicker = MaterialDatePicker.Builder
-            .datePicker()
-            .setCalendarConstraints(constraints)
-            .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
-            .build()
-
-        datePicker.addOnPositiveButtonClickListener { dateLong ->
-            val date = convertMillisToDate(dateLong)
-            openTimePicker(date)
-        }
-
-        datePicker.show(parentFragmentManager, DATE_PICKER_DIALOG_TAG)
+    private fun showDatePicker() {
+        Timber.d("ScheduleVisitFragment_TAG: showDatePicker: ")
+        openDatePicker(
+            dateMills = MaterialDatePicker.todayInUtcMilliseconds(),
+            futureConstraints = true,
+            parentFragmentManager,
+            onPositiveButtonClicked = { dateLong ->
+                val date = convertMillisToDate(dateLong)
+                openTimePicker(date)
+            }
+        )
     }
 
     private fun openTimePicker(date: String) {

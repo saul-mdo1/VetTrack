@@ -12,13 +12,11 @@ import com.example.vettrack.core.Session
 import com.example.vettrack.databinding.RegisterPetActivityLayoutBinding
 import com.example.vettrack.models.Gender
 import com.example.vettrack.models.PetModel
-import com.example.vettrack.presentation.utils.DATE_PICKER_DIALOG_TAG
 import com.example.vettrack.presentation.utils.PET_TAG
 import com.example.vettrack.presentation.utils.convertDateToMills
 import com.example.vettrack.presentation.utils.convertMillisToDate
+import com.example.vettrack.presentation.utils.openDatePicker
 import com.example.vettrack.presentation.utils.showAlertDialog
-import com.google.android.material.datepicker.CalendarConstraints
-import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
@@ -97,7 +95,7 @@ class RegisterPetActivity : AppCompatActivity() {
         }
 
         layout.tilDate.setStartIconOnClickListener {
-            openDatePicker()
+            showDatePicker()
         }
     }
 
@@ -113,33 +111,24 @@ class RegisterPetActivity : AppCompatActivity() {
         }
     }
 
-    private fun openDatePicker() {
-        Timber.d("RegisterPetActivity_TAG: openDatePicker: ")
-        var dateMills: Long = MaterialDatePicker.todayInUtcMilliseconds()
-        try {
-            viewModel.birthdate.value?.let { date ->
-                if (date.isNotBlank()) {
-                    dateMills = convertDateToMills(date)
-                }
+    private fun showDatePicker() {
+        Timber.d("RegisterPetActivity_TAG: showDatePicker: ")
+        val dateMills: Long = viewModel.birthdate.value?.let { date ->
+            if (date.isNotBlank())
+                convertDateToMills(date)
+            else
+                MaterialDatePicker.todayInUtcMilliseconds()
+        } ?: MaterialDatePicker.todayInUtcMilliseconds()
+
+        openDatePicker(
+            dateMills = dateMills,
+            futureConstraints = false,
+            supportFragmentManager,
+            onPositiveButtonClicked = { dateLong ->
+                val date = convertMillisToDate(dateLong)
+                viewModel.birthdate.postValue(date)
             }
-        } catch (e: Exception) {
-            Timber.d("RegisterPetActivity_TAG: openDatePicker: ERROR set date: ${e.message} ")
-        }
-
-        val constraints =
-            CalendarConstraints.Builder().setValidator(DateValidatorPointBackward.now()).build()
-
-        val datePicker = MaterialDatePicker.Builder.datePicker()
-            .setCalendarConstraints(constraints)
-            .setSelection(dateMills)
-            .build()
-
-        datePicker.addOnPositiveButtonClickListener { dateLong ->
-            val date = convertMillisToDate(dateLong)
-            viewModel.birthdate.postValue(date)
-        }
-
-        datePicker.show(supportFragmentManager, DATE_PICKER_DIALOG_TAG)
+        )
     }
 
     @SuppressLint("PrivateResource")
