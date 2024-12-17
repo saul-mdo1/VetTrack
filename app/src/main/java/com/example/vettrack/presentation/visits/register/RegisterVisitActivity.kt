@@ -8,18 +8,13 @@ import androidx.databinding.DataBindingUtil
 import com.example.vettrack.R
 import com.example.vettrack.core.Session
 import com.example.vettrack.databinding.RegisterVisitActivityLayoutBinding
-import com.example.vettrack.presentation.utils.TIME_PICKER_DIALOG_TAG
 import com.example.vettrack.presentation.utils.VISIT_ID_TAG
 import com.example.vettrack.presentation.utils.convertDateToMills
 import com.example.vettrack.presentation.utils.convertMillisToDate
-import com.example.vettrack.presentation.utils.getTime
 import com.example.vettrack.presentation.utils.openDatePicker
-import com.example.vettrack.presentation.utils.parseTimeToHourMinute
+import com.example.vettrack.presentation.utils.openTimePicker
 import com.example.vettrack.presentation.utils.showAlertDialog
 import com.google.android.material.datepicker.MaterialDatePicker
-import com.google.android.material.timepicker.MaterialTimePicker
-import com.google.android.material.timepicker.MaterialTimePicker.INPUT_MODE_KEYBOARD
-import com.google.android.material.timepicker.TimeFormat
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
@@ -87,50 +82,27 @@ class RegisterVisitActivity : AppCompatActivity() {
             supportFragmentManager,
             onPositiveButtonClicked = { dateLong ->
                 val date = convertMillisToDate(dateLong)
-                openTimePicker(date)
+                showTimePicker(date)
             }
         )
     }
 
-    private fun openTimePicker(date: String) {
-        Timber.d("RegisterVisitActivity_TAG: openTimePicker: ")
+    private fun showTimePicker(date: String) {
+        Timber.d("RegisterVisitActivity_TAG: showTimePicker: ")
         val dateTimeString: String? = if (viewModel.isUpdate) viewModel.date.value else null
-        var hour = 12
-        var minute = 0
 
-        try {
-            dateTimeString?.let {
-                if (it.isNotBlank()) {
-                    val timeString = it.split(" ")[1] + " " + it.split(" ")[2]
-                    val (h, m) = parseTimeToHourMinute(timeString)
-                    hour = h
-                    minute = m
-                }
+        openTimePicker(
+            defaultDate = dateTimeString,
+            isFutureConstrained = false,
+            supportFragmentManager = supportFragmentManager,
+            onPositiveButtonClicked = { timeFormatted ->
+                val dateTime = "$date $timeFormatted"
+                viewModel.date.postValue(dateTime)
+            },
+            onNegativeButtonClicked = {
+                viewModel.date.postValue(date)
             }
-        } catch (e: Exception) {
-            Timber.d("RegisterVisitActivity_TAG: openTimePicker: ERROR set time: ${e.message} ")
-            hour = 12
-            minute = 0
-        }
-
-        val timePicker = MaterialTimePicker.Builder()
-            .setTimeFormat(TimeFormat.CLOCK_12H)
-            .setHour(hour)
-            .setMinute(minute)
-            .setInputMode(INPUT_MODE_KEYBOARD)
-            .build()
-
-        timePicker.addOnPositiveButtonClickListener {
-            val formattedTime = getTime(timePicker)
-            val dateTime = "$date $formattedTime"
-            viewModel.date.postValue(dateTime)
-        }
-
-        timePicker.addOnNegativeButtonClickListener {
-            viewModel.date.postValue(date)
-        }
-
-        timePicker.show(supportFragmentManager, TIME_PICKER_DIALOG_TAG)
+        )
     }
     //endregion
 

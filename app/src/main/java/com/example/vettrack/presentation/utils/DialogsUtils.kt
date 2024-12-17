@@ -9,7 +9,10 @@ import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.TimeFormat
 import timber.log.Timber
+import java.util.Calendar
 
 fun showAlertDialog(
     context: Context,
@@ -61,4 +64,53 @@ fun openDatePicker(
     }
 
     datePicker.show(supportFragmentManager, DATE_PICKER_DIALOG_TAG)
+}
+
+fun openTimePicker(
+    defaultDate: String?,
+    isFutureConstrained: Boolean,
+    supportFragmentManager: FragmentManager,
+    onPositiveButtonClicked: (String) -> Unit,
+    onNegativeButtonClicked: () -> Unit
+) {
+    Timber.d("DialogUtils_TAG: openTimePicker: ")
+    var hour = 12
+    var minute = 0
+
+    val calendar = Calendar.getInstance()
+    if (isFutureConstrained) {
+        hour = calendar.get(Calendar.HOUR)
+        minute = calendar.get(Calendar.MINUTE)
+    }
+
+    try {
+        defaultDate?.let {
+            if (it.isNotBlank()) {
+                val timeString = it.split(" ")[1] + " " + it.split(" ")[2]
+                val (h, m) = parseTimeToHourMinute(timeString)
+                hour = h
+                minute = m
+            }
+        }
+    } catch (e: Exception) {
+        Timber.d("DialogUtils_TAG: openTimePicker: ERROR set time: ${e.message} ")
+    }
+
+    val timePicker = MaterialTimePicker.Builder()
+        .setTimeFormat(TimeFormat.CLOCK_12H)
+        .setHour(hour)
+        .setMinute(minute)
+        .setInputMode(MaterialTimePicker.INPUT_MODE_KEYBOARD)
+        .build()
+
+    timePicker.addOnPositiveButtonClickListener {
+        val formattedTime = getTime(timePicker)
+        onPositiveButtonClicked(formattedTime)
+    }
+
+    timePicker.addOnNegativeButtonClickListener {
+        onNegativeButtonClicked()
+    }
+
+    timePicker.show(supportFragmentManager, TIME_PICKER_DIALOG_TAG)
 }

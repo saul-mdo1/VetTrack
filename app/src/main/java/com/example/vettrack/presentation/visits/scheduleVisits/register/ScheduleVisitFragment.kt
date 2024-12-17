@@ -14,15 +14,12 @@ import androidx.navigation.fragment.findNavController
 import com.example.vettrack.R
 import com.example.vettrack.core.Session
 import com.example.vettrack.databinding.ScheduleVisitFragmentLayoutBinding
-import com.example.vettrack.presentation.utils.TIME_PICKER_DIALOG_TAG
 import com.example.vettrack.presentation.utils.convertDateTimeToMills
 import com.example.vettrack.presentation.utils.convertMillisToDate
-import com.example.vettrack.presentation.utils.getTime
 import com.example.vettrack.presentation.utils.openDatePicker
+import com.example.vettrack.presentation.utils.openTimePicker
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.timepicker.MaterialTimePicker
-import com.google.android.material.timepicker.TimeFormat
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
@@ -71,31 +68,25 @@ class ScheduleVisitFragment : Fragment() {
             parentFragmentManager,
             onPositiveButtonClicked = { dateLong ->
                 val date = convertMillisToDate(dateLong)
-                openTimePicker(date)
+                showTimePicker(date)
             }
         )
     }
 
-    private fun openTimePicker(date: String) {
-        Timber.d("ScheduleVisitFragment_TAG: openTimePicker: ")
-        val timePicker = MaterialTimePicker.Builder()
-            .setTimeFormat(TimeFormat.CLOCK_12H)
-            .setHour(12)
-            .setMinute(0)
-            .setInputMode(MaterialTimePicker.INPUT_MODE_KEYBOARD)
-            .build()
-
-        timePicker.addOnPositiveButtonClickListener {
-            val formattedTime = getTime(timePicker)
-            val dateTime = "$date $formattedTime"
-            viewModel.date.postValue(dateTime)
-        }
-
-        timePicker.addOnNegativeButtonClickListener {
-            viewModel.date.postValue(date)
-        }
-
-        timePicker.show(parentFragmentManager, TIME_PICKER_DIALOG_TAG)
+    private fun showTimePicker(date: String) {
+        Timber.d("ScheduleVisitFragment_TAG: showTimePicker: ")
+        openTimePicker(
+            defaultDate = null,
+            isFutureConstrained = true,
+            supportFragmentManager = parentFragmentManager,
+            onPositiveButtonClicked = { timeFormatted ->
+                val dateTime = "$date $timeFormatted"
+                viewModel.date.postValue(dateTime)
+            },
+            onNegativeButtonClicked = {
+                viewModel.date.postValue(date)
+            }
+        )
     }
 
     private fun initObservers() {
